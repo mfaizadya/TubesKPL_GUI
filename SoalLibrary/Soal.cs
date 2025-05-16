@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TubesKPL
+namespace SoalLibrary
 {
-    public enum JenisSoal { Esai = 0, PilihanGanda = 1 }
     public class Soal
     {
         public int Id { get; set; }

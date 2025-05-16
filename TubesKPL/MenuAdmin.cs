@@ -45,7 +45,7 @@ namespace TubesKPL
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal();
+            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal(loginData);
             formkelolalv.Show();
             this.Hide();
         }

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
 using System.Text.Json;
+using SoalLibrary;
+using AuthAPI;
 
 
 namespace TubesKPL
@@ -18,10 +20,12 @@ namespace TubesKPL
     {
         private Level levelYangDipilih;
         string filePath = "data_level.json";
-        public KelolaSoal(Level selectedLevel)
+        LoginResponse loginData;
+        public KelolaSoal(Level selectedLevel, LoginResponse loginData)
         {
             InitializeComponent();
-            levelYangDipilih = selectedLevel;
+            this.levelYangDipilih = selectedLevel;
+            this.loginData = loginData;
         }
         private void SimpanLevelKeFile()
         {
@@ -40,12 +44,38 @@ namespace TubesKPL
 
         private void button2_Click(object sender, EventArgs e)
         {
+            FormMenambahSoalEssay formInput = new FormMenambahSoalEssay();
+            if (formInput.ShowDialog() == DialogResult.OK)
+            {
+                var soal = formInput.SoalBaru;
+                if (soal != null)
+                {
+                    soal.Id = levelYangDipilih.SoalList.Count > 0
+                        ? levelYangDipilih.SoalList.Max(s => s.Id) + 1 : 1;
 
+                    levelYangDipilih.SoalList.Add(soal);
+                    SimpanLevelKeFile();
+                    LoadSoalToListView();
+                }
+            }
         }
 
         private void btnTambahSoal_Click(object sender, EventArgs e)
         {
-            SimpanLevelKeFile();
+            FormMenambahSoalPilgan formInput = new FormMenambahSoalPilgan();
+            if (formInput.ShowDialog() == DialogResult.OK)
+            {
+                var soal = formInput.SoalBaru;
+                if (soal != null)
+                {
+                    soal.Id = levelYangDipilih.SoalList.Count > 0
+                        ? levelYangDipilih.SoalList.Max(s => s.Id) + 1 : 1;
+
+                    levelYangDipilih.SoalList.Add(soal);
+                    SimpanLevelKeFile();
+                    LoadSoalToListView();
+                }
+            }
         }
 
         private void btnHapusSoalEssay_Click(object sender, EventArgs e)
@@ -60,7 +90,22 @@ namespace TubesKPL
 
         private void btnHapusSoal_Click(object sender, EventArgs e)
         {
-            SimpanLevelKeFile();
+
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int id = int.Parse(listView1.SelectedItems[0].Text);
+                var soal = levelYangDipilih.SoalList.FirstOrDefault(s => s.Id == id);
+                if (soal != null)
+                {
+                    var result = MessageBox.Show("Yakin ingin menghapus soal ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        levelYangDipilih.SoalList.Remove(soal);
+                        SimpanLevelKeFile();
+                        LoadSoalToListView();
+                    }
+                }
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,17 +145,35 @@ namespace TubesKPL
 
         private void btnEditSoalEssay_Click(object sender, EventArgs e)
         {
-            SimpanLevelKeFile();
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int id = int.Parse(listView1.SelectedItems[0].Text);
+                var soal = levelYangDipilih.SoalList.FirstOrDefault(s => s.Id == id && s.Jenis == JenisSoal.Esai);
+                if (soal != null && SoalEditHelper.EditEsaiSoal(soal))
+                {
+                    SimpanLevelKeFile();
+                    LoadSoalToListView();
+                }
+            }
         }
 
         private void btnEditSoalPG_Click(object sender, EventArgs e)
         {
-            SimpanLevelKeFile();
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int id = int.Parse(listView1.SelectedItems[0].Text);
+                var soal = levelYangDipilih.SoalList.FirstOrDefault(s => s.Id == id && s.Jenis == JenisSoal.PilihanGanda);
+                if (soal != null && SoalEditHelper.EditPilihanGandaSoal(soal))
+                {
+                    SimpanLevelKeFile();
+                    LoadSoalToListView();
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal();
+            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal(loginData);
             formkelolalv.Show();
             this.Hide();
         }
