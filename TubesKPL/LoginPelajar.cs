@@ -42,7 +42,7 @@ namespace TubesKPL
                 if (loginData != null && !string.IsNullOrEmpty(loginData.nama))
                 {
                     labelOutput.Text = $"Login berhasil, selamat datang {loginData.nama}!";
-                    MenuPelajar menuForm = new MenuPelajar(loginData.nama);
+                    MenuPelajar menuForm = new MenuPelajar(loginData);
                     menuForm.Show();
                     this.Hide();
                 }
