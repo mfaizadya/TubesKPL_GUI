@@ -42,13 +42,13 @@ namespace TubesKPL
                 var soal = level.SoalList[currentSoalIndex];
                 labelSoal.Text = soal.Pertanyaan;
 
-                if (soal.Jenis == JenisSoal.Esai)
+                if (soal.Jenis == 0)
                 {
                     txtJawaban.Visible = true;
                     txtJawaban.Text = ""; // kosong untuk input
                     listBoxOpsi.Visible = false;
                 }
-                else if (soal.Jenis == JenisSoal.PilihanGanda)
+                else if (soal.Jenis != 0)
                 {
                     txtJawaban.Visible = false;
                     listBoxOpsi.Visible = true;
@@ -78,11 +78,11 @@ namespace TubesKPL
             var soal = level.SoalList[currentSoalIndex];
             string jawaban = "";
 
-            if (soal.Jenis == JenisSoal.Esai)
+            if (soal.Jenis == 0)
             {
                 jawaban = txtJawaban.Text.Trim();
             }
-            else if (soal.Jenis == JenisSoal.PilihanGanda && listBoxOpsi.SelectedItem != null)
+            else if (soal.Jenis != 0 && listBoxOpsi.SelectedItem != null)
             {
                 jawaban = listBoxOpsi.SelectedItem.ToString();
             }
