@@ -10,15 +10,22 @@ using System.Windows.Forms;
 using SoalLibrary;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
 namespace TubesKPL
 {
-    public partial class FormMenambahSoalEssay : Form
+    public partial class FormMenambahSoalEssay : Form, IFormInputSoal<Soal>
     {
 
-        public Soal SoalBaru { get; private set; }
+        private Soal soalBaru;
+
         public FormMenambahSoalEssay()
         {
             InitializeComponent();
+        }
+
+        public Soal AmbilSoal()
+        {
+            return soalBaru;
         }
 
         private void btnSelesai_Click(object sender, EventArgs e)
@@ -32,7 +39,7 @@ namespace TubesKPL
                 return;
             }
 
-            SoalBaru = new Soal
+            soalBaru = new Soal
             {
                 Pertanyaan = pertanyaan,
                 Jawaban = jawaban,
@@ -50,6 +57,11 @@ namespace TubesKPL
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMenambahSoalEssay_Load(object sender, EventArgs e)
         {
 
         }

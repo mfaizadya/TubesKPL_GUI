@@ -44,10 +44,16 @@ namespace TubesKPL
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormMenambahSoalEssay formInput = new FormMenambahSoalEssay();
+            TambahSoalDenganForm<Soal>(new FormMenambahSoalEssay());
+        }
+
+        private void TambahSoalDenganForm<T>(Form formInput) where T : Soal
+        {
             if (formInput.ShowDialog() == DialogResult.OK)
             {
-                var soal = formInput.SoalBaru;
+                var inputForm = formInput as IFormInputSoal<T>;
+                var soal = inputForm?.AmbilSoal();
+
                 if (soal != null)
                 {
                     soal.Id = levelYangDipilih.SoalList.Count > 0

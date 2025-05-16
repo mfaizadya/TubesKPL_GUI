@@ -39,17 +39,18 @@
             // labelJudul
             // 
             labelJudul.AutoSize = true;
-            labelJudul.Location = new Point(325, 122);
+            labelJudul.Location = new Point(284, 92);
             labelJudul.Name = "labelJudul";
-            labelJudul.Size = new Size(176, 20);
+            labelJudul.Size = new Size(142, 15);
             labelJudul.TabIndex = 0;
             labelJudul.Text = "Tambah Pertanyaan Essay";
             // 
             // btnSelesai
             // 
-            btnSelesai.Location = new Point(358, 354);
+            btnSelesai.Location = new Point(313, 266);
+            btnSelesai.Margin = new Padding(3, 2, 3, 2);
             btnSelesai.Name = "btnSelesai";
-            btnSelesai.Size = new Size(94, 29);
+            btnSelesai.Size = new Size(82, 22);
             btnSelesai.TabIndex = 1;
             btnSelesai.Text = "Selesai";
             btnSelesai.UseVisualStyleBackColor = true;
@@ -57,51 +58,55 @@
             // 
             // textBoxPertanyaan
             // 
-            textBoxPertanyaan.Location = new Point(157, 189);
+            textBoxPertanyaan.Location = new Point(137, 142);
+            textBoxPertanyaan.Margin = new Padding(3, 2, 3, 2);
             textBoxPertanyaan.Name = "textBoxPertanyaan";
-            textBoxPertanyaan.Size = new Size(527, 27);
+            textBoxPertanyaan.Size = new Size(462, 23);
             textBoxPertanyaan.TabIndex = 2;
             textBoxPertanyaan.TextChanged += textBox1_TextChanged;
             // 
             // textBoxJawaban
             // 
-            textBoxJawaban.Location = new Point(157, 249);
+            textBoxJawaban.Location = new Point(137, 187);
+            textBoxJawaban.Margin = new Padding(3, 2, 3, 2);
             textBoxJawaban.Name = "textBoxJawaban";
-            textBoxJawaban.Size = new Size(527, 27);
+            textBoxJawaban.Size = new Size(462, 23);
             textBoxJawaban.TabIndex = 3;
             textBoxJawaban.TextChanged += textBox2_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(39, 192);
+            label1.Location = new Point(34, 144);
             label1.Name = "label1";
-            label1.Size = new Size(81, 20);
+            label1.Size = new Size(66, 15);
             label1.TabIndex = 4;
             label1.Text = "Pertanyaan";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(39, 252);
+            label2.Location = new Point(34, 189);
             label2.Name = "label2";
-            label2.Size = new Size(66, 20);
+            label2.Size = new Size(52, 15);
             label2.TabIndex = 5;
             label2.Text = "Jawaban";
             // 
             // FormMenambahSoalEssay
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBoxJawaban);
             Controls.Add(textBoxPertanyaan);
             Controls.Add(btnSelesai);
             Controls.Add(labelJudul);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormMenambahSoalEssay";
             Text = "FormMenambahSoalEssay";
+            Load += FormMenambahSoalEssay_Load;
             ResumeLayout(false);
             PerformLayout();
         }
