@@ -18,10 +18,12 @@ namespace TubesKPL
 
     public partial class MenuPelajar : Form
     {
+        
         private List<Level> daftarLevel = new List<Level>();
         private string filePath = "data_level.json";
         LoginResponse loginData;
         Level selectedLevel;
+        
 
         public MenuPelajar(LoginResponse loginData)
         {
@@ -64,9 +66,8 @@ namespace TubesKPL
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            LoginPelajar formLoginPelajar = new LoginPelajar();
-            formLoginPelajar.Show();
-            this.Close();
+            AppStateManager.Instance.SetState(AppState.Logout);
+            AppStateManager.Instance.ApplyState(this);
         }
         private void RefreshListBox()
         {
@@ -92,5 +93,8 @@ namespace TubesKPL
             formPelajarLevelView.Show();
             this.Close();
         }
+
+         
+
     }
 }

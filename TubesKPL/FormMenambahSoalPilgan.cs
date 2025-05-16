@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SoalLibrary;
+
 
 namespace TubesKPL
 {
@@ -18,8 +20,7 @@ namespace TubesKPL
             InitializeComponent();
         }
 
-
-        public SoalLibrary.Soal SoalBaru { get; private set; }
+        public Soal SoalBaru { get; private set; }
 
         private void txtSoal_TextChanged(object sender, EventArgs e)
         {
