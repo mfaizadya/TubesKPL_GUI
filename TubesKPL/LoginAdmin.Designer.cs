@@ -35,6 +35,7 @@
             textBoxPassword = new TextBox();
             buttonLoginPelajar = new Button();
             buttonLoginAdmin = new Button();
+            labelOutput = new Label();
             SuspendLayout();
             // 
             // label4
@@ -98,11 +99,21 @@
             buttonLoginAdmin.UseVisualStyleBackColor = true;
             buttonLoginAdmin.Click += buttonLoginAdmin_Click;
             // 
+            // labelOutput
+            // 
+            labelOutput.AutoSize = true;
+            labelOutput.Location = new Point(443, 315);
+            labelOutput.Name = "labelOutput";
+            labelOutput.Size = new Size(0, 20);
+            labelOutput.TabIndex = 26;
+            labelOutput.Click += label2_Click;
+            // 
             // LoginAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelOutput);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(textBoxUsername);
@@ -125,5 +136,6 @@
         private TextBox textBoxPassword;
         private Button buttonLoginPelajar;
         private Button buttonLoginAdmin;
+        private Label labelOutput;
     }
 }
