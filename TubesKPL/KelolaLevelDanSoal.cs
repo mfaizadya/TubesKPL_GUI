@@ -19,10 +19,7 @@ namespace TubesKPL
         private List<Level> daftarLevel = new List<Level>();
         private string filePath = "data_level.json";
         LoginResponse loginData;
-        public Kelola_Level_dan_Soal()
-        {
-            InitializeComponent();
-        }
+
         public Kelola_Level_dan_Soal(LoginResponse loginData)
         {
             InitializeComponent();
@@ -75,7 +72,6 @@ namespace TubesKPL
                 }
             }
         }
-
         private void Hapuslv_Click(object sender, EventArgs e)
         {
             if (listBoxLevel.SelectedIndex >= 0)
@@ -95,12 +91,11 @@ namespace TubesKPL
             if (listBoxLevel.SelectedIndex >= 0)
             {
                 Level selected = daftarLevel[listBoxLevel.SelectedIndex];
-                KelolaSoal formKelolaSoal = new KelolaSoal(selected);
+                KelolaSoal formKelolaSoal = new KelolaSoal(selected, loginData);
                 formKelolaSoal.Show();
                 this.Close();
             }
         }
-
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -131,7 +126,7 @@ namespace TubesKPL
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            MenuAdmin formMenuAdmin = new MenuAdmin();
+            MenuAdmin formMenuAdmin = new MenuAdmin(loginData);
             formMenuAdmin.Show();
             this.Close();
         }
