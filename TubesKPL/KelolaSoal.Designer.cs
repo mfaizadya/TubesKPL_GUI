@@ -37,6 +37,7 @@
             labelLevel = new Label();
             labelAngkaLevel = new Label();
             listView1 = new ListView();
+            buttonBack = new Button();
             SuspendLayout();
             // 
             // btnTambahSoalPG
@@ -67,6 +68,7 @@
             btnEditSoalPG.TabIndex = 2;
             btnEditSoalPG.Text = "Edit Soal PG";
             btnEditSoalPG.UseVisualStyleBackColor = true;
+            btnEditSoalPG.Click += btnEditSoalPG_Click;
             // 
             // btnEditSoalEssay
             // 
@@ -76,6 +78,7 @@
             btnEditSoalEssay.TabIndex = 3;
             btnEditSoalEssay.Text = "Edit Soal Essay";
             btnEditSoalEssay.UseVisualStyleBackColor = true;
+            btnEditSoalEssay.Click += btnEditSoalEssay_Click;
             // 
             // btnHapusSoal
             // 
@@ -124,11 +127,22 @@
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
+            // buttonBack
+            // 
+            buttonBack.Location = new Point(677, 409);
+            buttonBack.Name = "buttonBack";
+            buttonBack.Size = new Size(82, 29);
+            buttonBack.TabIndex = 10;
+            buttonBack.Text = "Back";
+            buttonBack.UseVisualStyleBackColor = true;
+            buttonBack.Click += button1_Click;
+            // 
             // KelolaSoal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonBack);
             Controls.Add(listView1);
             Controls.Add(labelAngkaLevel);
             Controls.Add(labelLevel);
@@ -156,5 +170,6 @@
         private Label labelLevel;
         private Label labelAngkaLevel;
         private ListView listView1;
+        private Button buttonBack;
     }
 }
