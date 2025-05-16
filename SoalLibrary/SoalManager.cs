@@ -6,7 +6,7 @@ namespace SoalLibrary
 
     public static class SoalManager
     {
-        private static string filePath = "data_level.json";
+        public static string filePath = "data_level.json";
 
         public static List<Soal> Load()
         {
