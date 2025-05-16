@@ -73,7 +73,6 @@ namespace TubesKPL
                 }
             }
         }
-
         private void Hapuslv_Click(object sender, EventArgs e)
         {
             if (listBoxLevel.SelectedIndex >= 0)
@@ -98,7 +97,6 @@ namespace TubesKPL
                 this.Close();
             }
         }
-
 
         private void label1_Click(object sender, EventArgs e)
         {

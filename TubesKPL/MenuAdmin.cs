@@ -21,11 +21,6 @@ namespace TubesKPL
             labelNama.Text = $"Selamat datang di Logilearn, {loginData.nama}!";
         }
 
-        public MenuAdmin()
-        {
-            InitializeComponent();
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
