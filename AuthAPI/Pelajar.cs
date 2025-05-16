@@ -28,7 +28,7 @@
         }
 
         public string Password
-        {+
+        {
             get { return password; }
             set { password = value; }
         }
