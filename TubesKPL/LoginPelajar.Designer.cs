@@ -37,6 +37,7 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            labelOutput = new Label();
             SuspendLayout();
             // 
             // buttonSignUpPelajar
@@ -125,11 +126,20 @@
             label4.Text = "Selamat Datang di LogiLearn";
             label4.Click += label4_Click;
             // 
+            // labelOutput
+            // 
+            labelOutput.AutoSize = true;
+            labelOutput.Location = new Point(429, 311);
+            labelOutput.Name = "labelOutput";
+            labelOutput.Size = new Size(0, 20);
+            labelOutput.TabIndex = 9;
+            // 
             // LoginPelajar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelOutput);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -157,5 +167,6 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private Label labelOutput;
     }
 }

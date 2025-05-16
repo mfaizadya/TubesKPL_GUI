@@ -35,12 +35,13 @@
             textBoxPassword = new TextBox();
             buttonLoginPelajar = new Button();
             buttonLoginAdmin = new Button();
+            labelOutput = new Label();
             SuspendLayout();
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(364, 242);
+            label4.Location = new Point(363, 243);
             label4.Name = "label4";
             label4.Size = new Size(73, 20);
             label4.TabIndex = 25;
@@ -57,7 +58,7 @@
             // 
             // textBoxUsername
             // 
-            textBoxUsername.Location = new Point(443, 206);
+            textBoxUsername.Location = new Point(443, 205);
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(221, 27);
             textBoxUsername.TabIndex = 21;
@@ -70,6 +71,7 @@
             label1.Size = new Size(94, 20);
             label1.TabIndex = 20;
             label1.Text = "Login Admin";
+            label1.Click += label1_Click;
             // 
             // textBoxPassword
             // 
@@ -80,7 +82,7 @@
             // 
             // buttonLoginPelajar
             // 
-            buttonLoginPelajar.Location = new Point(121, 222);
+            buttonLoginPelajar.Location = new Point(121, 221);
             buttonLoginPelajar.Name = "buttonLoginPelajar";
             buttonLoginPelajar.Size = new Size(162, 29);
             buttonLoginPelajar.TabIndex = 18;
@@ -98,11 +100,21 @@
             buttonLoginAdmin.UseVisualStyleBackColor = true;
             buttonLoginAdmin.Click += buttonLoginAdmin_Click;
             // 
+            // labelOutput
+            // 
+            labelOutput.AutoSize = true;
+            labelOutput.Location = new Point(443, 315);
+            labelOutput.Name = "labelOutput";
+            labelOutput.Size = new Size(0, 20);
+            labelOutput.TabIndex = 26;
+            labelOutput.Click += label2_Click;
+            // 
             // LoginAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 451);
+            Controls.Add(labelOutput);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(textBoxUsername);
@@ -112,6 +124,7 @@
             Controls.Add(buttonLoginAdmin);
             Name = "LoginAdmin";
             Text = "LoginAdmin";
+            Load += LoginAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -125,5 +138,6 @@
         private TextBox textBoxPassword;
         private Button buttonLoginPelajar;
         private Button buttonLoginAdmin;
+        private Label labelOutput;
     }
 }
