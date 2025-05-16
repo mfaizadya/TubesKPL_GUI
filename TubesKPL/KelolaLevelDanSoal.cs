@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.IO;
-using static TubesKPL.Level_dan_Soal;
+
 
 namespace TubesKPL
 {
