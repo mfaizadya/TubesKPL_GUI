@@ -33,6 +33,7 @@
             Editlv = new Button();
             Hapuslv = new Button();
             Kelolalv = new Button();
+            listBoxLevel = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -57,16 +58,18 @@
             // 
             // Editlv
             // 
+            Editlv.Enabled = false;
             Editlv.Location = new Point(594, 116);
             Editlv.Name = "Editlv";
             Editlv.Size = new Size(126, 23);
             Editlv.TabIndex = 2;
-            Editlv.Text = "Edit Level";
+            Editlv.Text = "Edit Nama Level";
             Editlv.UseVisualStyleBackColor = true;
             Editlv.Click += Editlv_Click;
             // 
             // Hapuslv
             // 
+            Hapuslv.Enabled = false;
             Hapuslv.Location = new Point(594, 145);
             Hapuslv.Name = "Hapuslv";
             Hapuslv.Size = new Size(126, 23);
@@ -84,23 +87,22 @@
             Kelolalv.Text = "Kelola Soal";
             Kelolalv.UseVisualStyleBackColor = true;
             Kelolalv.Click += Kelolalv_Click;
-
-            listBoxLevel = new ListBox();
+            // 
+            // listBoxLevel
+            // 
+            listBoxLevel.ItemHeight = 15;
             listBoxLevel.Location = new Point(50, 50);
-            listBoxLevel.Size = new Size(500, 300);
+            listBoxLevel.Name = "listBoxLevel";
+            listBoxLevel.Size = new Size(500, 289);
+            listBoxLevel.TabIndex = 0;
             listBoxLevel.SelectedIndexChanged += listBoxLevel_SelectedIndexChanged;
-
-            Controls.Add(listBoxLevel);
-            Editlv.Enabled = false;
-            Hapuslv.Enabled = false;
-
-
             // 
             // Kelola_Level_dan_Soal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(listBoxLevel);
             Controls.Add(Kelolalv);
             Controls.Add(Hapuslv);
             Controls.Add(Editlv);
