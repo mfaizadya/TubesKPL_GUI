@@ -19,6 +19,25 @@ namespace AuthAPI.Controllers
             return daftarPelajar;
         }
 
+        [HttpPost("register")]
+        public ActionResult<Pelajar> Register([FromBody] Pelajar newPelajar)
+        {
+            if (newPelajar == null || string.IsNullOrWhiteSpace(newPelajar.Username) || string.IsNullOrWhiteSpace(newPelajar.Password) || string.IsNullOrWhiteSpace(newPelajar.Nama))
+            {
+                return BadRequest("Semua data (Nama, Username, dan Password) harus diisi.");
+            }
+
+            var existing = daftarPelajar.FirstOrDefault(p => p.Username == newPelajar.Username);
+            if (existing != null)
+            {
+                return Conflict("Username sudah digunakan.");
+            }
+
+            daftarPelajar.Add(newPelajar);
+            return CreatedAtAction(nameof(GetAllPelajar), new { username = newPelajar.Username }, newPelajar);
+        }
+
+
         [HttpPost("login")]
         public ActionResult<Pelajar> Login([FromBody] LoginReq req)
         {

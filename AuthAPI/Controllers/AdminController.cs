@@ -19,6 +19,25 @@ namespace AuthAPI.Controllers
             return daftarAdmin;
         }
 
+        [HttpPost("register")]
+        public ActionResult<Admin> Register([FromBody] Admin newAdmin)
+        {
+            if (newAdmin == null || string.IsNullOrWhiteSpace(newAdmin.Username) || string.IsNullOrWhiteSpace(newAdmin.Password) || string.IsNullOrWhiteSpace(newAdmin.Nama))
+            {
+                return BadRequest("Semua data (Nama, Username, dan Password) harus diisi.");
+            }
+
+            var existing = daftarAdmin.FirstOrDefault(a => a.Username == newAdmin.Username);
+            if (existing != null)
+            {
+                return Conflict("Username sudah digunakan.");
+            }
+
+            daftarAdmin.Add(newAdmin);
+            return CreatedAtAction(nameof(GetAllAdmin), new { username = newAdmin.Username }, newAdmin);
+        }
+
+
         [HttpPost("login")]
         public ActionResult<Admin> Login([FromBody] LoginReq req)
         {
