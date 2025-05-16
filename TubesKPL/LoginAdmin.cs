@@ -35,6 +35,9 @@ namespace TubesKPL
                 if (loginData != null && !string.IsNullOrEmpty(loginData.nama))
                 {
                     labelOutput.Text = $"Login berhasil, selamat datang {loginData.nama}!";
+                    MenuAdmin formMenuAdmin = new MenuAdmin();
+                    formMenuAdmin.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -45,6 +48,7 @@ namespace TubesKPL
             {
                 labelOutput.Text = $"Login gagal, {loginResp}";
             }
+
         }
 
         private void buttonLoginPelajar_Click(object sender, EventArgs e)
@@ -55,6 +59,11 @@ namespace TubesKPL
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoginAdmin_Load(object sender, EventArgs e)
         {
 
         }

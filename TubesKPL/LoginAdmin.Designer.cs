@@ -41,49 +41,52 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(364, 242);
+            label4.Location = new Point(318, 182);
             label4.Name = "label4";
-            label4.Size = new Size(73, 20);
+            label4.Size = new Size(60, 15);
             label4.TabIndex = 25;
             label4.Text = "Password:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(359, 209);
+            label3.Location = new Point(314, 157);
             label3.Name = "label3";
-            label3.Size = new Size(78, 20);
+            label3.Size = new Size(63, 15);
             label3.TabIndex = 24;
             label3.Text = "Username:";
             // 
             // textBoxUsername
             // 
-            textBoxUsername.Location = new Point(443, 206);
+            textBoxUsername.Location = new Point(388, 154);
+            textBoxUsername.Margin = new Padding(3, 2, 3, 2);
             textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new Size(221, 27);
+            textBoxUsername.Size = new Size(194, 23);
             textBoxUsername.TabIndex = 21;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(505, 183);
+            label1.Location = new Point(442, 137);
             label1.Name = "label1";
-            label1.Size = new Size(94, 20);
+            label1.Size = new Size(76, 15);
             label1.TabIndex = 20;
             label1.Text = "Login Admin";
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(443, 239);
+            textBoxPassword.Location = new Point(388, 179);
+            textBoxPassword.Margin = new Padding(3, 2, 3, 2);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(221, 27);
+            textBoxPassword.Size = new Size(194, 23);
             textBoxPassword.TabIndex = 19;
             // 
             // buttonLoginPelajar
             // 
-            buttonLoginPelajar.Location = new Point(121, 222);
+            buttonLoginPelajar.Location = new Point(106, 166);
+            buttonLoginPelajar.Margin = new Padding(3, 2, 3, 2);
             buttonLoginPelajar.Name = "buttonLoginPelajar";
-            buttonLoginPelajar.Size = new Size(162, 29);
+            buttonLoginPelajar.Size = new Size(142, 22);
             buttonLoginPelajar.TabIndex = 18;
             buttonLoginPelajar.Text = "Login Pelajar";
             buttonLoginPelajar.UseVisualStyleBackColor = true;
@@ -91,9 +94,10 @@
             // 
             // buttonLoginAdmin
             // 
-            buttonLoginAdmin.Location = new Point(473, 272);
+            buttonLoginAdmin.Location = new Point(414, 204);
+            buttonLoginAdmin.Margin = new Padding(3, 2, 3, 2);
             buttonLoginAdmin.Name = "buttonLoginAdmin";
-            buttonLoginAdmin.Size = new Size(162, 29);
+            buttonLoginAdmin.Size = new Size(142, 22);
             buttonLoginAdmin.TabIndex = 17;
             buttonLoginAdmin.Text = "Login Admin";
             buttonLoginAdmin.UseVisualStyleBackColor = true;
@@ -102,17 +106,17 @@
             // labelOutput
             // 
             labelOutput.AutoSize = true;
-            labelOutput.Location = new Point(443, 315);
+            labelOutput.Location = new Point(388, 236);
             labelOutput.Name = "labelOutput";
-            labelOutput.Size = new Size(0, 20);
+            labelOutput.Size = new Size(0, 15);
             labelOutput.TabIndex = 26;
             labelOutput.Click += label2_Click;
             // 
             // LoginAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(labelOutput);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -121,8 +125,10 @@
             Controls.Add(textBoxPassword);
             Controls.Add(buttonLoginPelajar);
             Controls.Add(buttonLoginAdmin);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LoginAdmin";
             Text = "LoginAdmin";
+            Load += LoginAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
