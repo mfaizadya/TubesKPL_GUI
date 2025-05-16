@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
+using static TubesKPL.Level_dan_Soal;
 
 namespace TubesKPL
 {
     public partial class Kelola_Level_dan_Soal : Form
     {
-        private List<string> daftarLevel = new List<string>();
+        private List<Level> daftarLevel = new List<Level>();
+        private string filePath = "data_level.json";
         public Kelola_Level_dan_Soal()
         {
             InitializeComponent();
@@ -20,9 +24,15 @@ namespace TubesKPL
 
         private void Kelola_Level_dan_Soal_Load(object sender, EventArgs e)
         {
-            daftarLevel.Add("Level 1");
-            daftarLevel.Add("Level 2");
-            daftarLevel.Add("Level 3");
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                daftarLevel = JsonSerializer.Deserialize<List<Level>>(json);
+            }
+            else
+            {
+                daftarLevel = new List<Level>();
+            }
 
             RefreshListBox();
         }
@@ -32,7 +42,14 @@ namespace TubesKPL
             string input = KelolaLevelHelper.ShowDialog("Masukkan nama level baru:", "Tambah Level");
             if (!string.IsNullOrWhiteSpace(input))
             {
-                daftarLevel.Add(input);
+                int newId = daftarLevel.Any() ? daftarLevel.Max(lv => lv.IdLevel) + 1 : 1;
+                daftarLevel.Add(new Level
+                {
+                    IdLevel = newId,
+                    NamaLevel = input,
+                    SoalList = new List<Soal>()
+                });
+                SimpanDataKeFile();
                 RefreshListBox();
             }
         }
@@ -41,11 +58,12 @@ namespace TubesKPL
         {
             if (listBoxLevel.SelectedIndex >= 0)
             {
-                string current = daftarLevel[listBoxLevel.SelectedIndex];
-                string input = KelolaLevelHelper.ShowDialog("Edit nama level:", "Edit Level", current);
+                Level selectedLevel = daftarLevel[listBoxLevel.SelectedIndex];
+                string input = KelolaLevelHelper.ShowDialog("Edit nama level:", "Edit Level", selectedLevel.NamaLevel);
                 if (!string.IsNullOrWhiteSpace(input))
                 {
-                    daftarLevel[listBoxLevel.SelectedIndex] = input;
+                    selectedLevel.NamaLevel = input;
+                    SimpanDataKeFile();
                     RefreshListBox();
                 }
             }
@@ -59,6 +77,7 @@ namespace TubesKPL
                 if (result == DialogResult.Yes)
                 {
                     daftarLevel.RemoveAt(listBoxLevel.SelectedIndex);
+                    SimpanDataKeFile();
                     RefreshListBox();
                 }
             }
@@ -79,7 +98,7 @@ namespace TubesKPL
             listBoxLevel.Items.Clear();
             foreach (var level in daftarLevel)
             {
-                listBoxLevel.Items.Add(level);
+                listBoxLevel.Items.Add($"{level.IdLevel} - {level.NamaLevel}");
             }
             Editlv.Enabled = false;
             Hapuslv.Enabled = false;
@@ -89,6 +108,11 @@ namespace TubesKPL
         {
             Editlv.Enabled = listBoxLevel.SelectedIndex >= 0;
             Hapuslv.Enabled = listBoxLevel.SelectedIndex >= 0;
+        }
+        private void SimpanDataKeFile()
+        {
+            string json = JsonSerializer.Serialize(daftarLevel, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(filePath, json);
         }
     }
 }
