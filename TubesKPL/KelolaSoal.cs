@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
 using System.Text.Json;
+using AuthAPI;
 
 
 namespace TubesKPL
@@ -18,7 +19,8 @@ namespace TubesKPL
     {
         private Level levelYangDipilih;
         string filePath = "data_level.json";
-        public KelolaSoal(Level selectedLevel)
+        LoginResponse loginData;
+        public KelolaSoal(Level selectedLevel, LoginResponse loginData)
         {
             InitializeComponent();
             levelYangDipilih = selectedLevel;
@@ -110,7 +112,7 @@ namespace TubesKPL
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal();
+            Kelola_Level_dan_Soal formkelolalv = new Kelola_Level_dan_Soal(loginData);
             formkelolalv.Show();
             this.Hide();
         }
