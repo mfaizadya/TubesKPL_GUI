@@ -72,5 +72,10 @@ namespace TubesKPL
         {
 
         }
+
+        private void textBoxUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

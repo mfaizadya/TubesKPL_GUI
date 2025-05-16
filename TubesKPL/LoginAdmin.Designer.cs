@@ -62,6 +62,7 @@
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(221, 27);
             textBoxUsername.TabIndex = 21;
+            textBoxUsername.TextChanged += textBoxUsername_TextChanged;
             // 
             // label1
             // 
