@@ -14,6 +14,8 @@
 
     <ProjectReference Include="..\AuthAPI\AuthAPI.csproj" />
 
+    <ProjectReference Include="..\SoalLibrary\SoalLibrary.csproj" />
+
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,31 @@
-[
-    {
-        "IdLevel": 1,
-        "NamaLevel": "Level 1",
-        "SoalList": []
-    },
-    {
-        "IdLevel": 2,
-        "NamaLevel": "Level 2",
-        "SoalList": []
-    }
+  {
+    "IdLevel": 1,
+    "NamaLevel": "Level 1",
+    "SoalList": [
+      {
+        "Id": 1,
+        "Jenis": 0,
+        "Pertanyaan": "Apa itu OOP?",
+        "Jawaban": "OOP adalah pemrograman berorientasi objek",
+        "Opsi": null
+      },
+      {
+        "Id": 2,
+        "Jenis": 1,
+        "Pertanyaan": "Apa ibu kota Indonesia?",
+        "Jawaban": "Jakarta",
+        "Opsi": [
+          "Bandung",
+          "Jakarta",
+          "Surabaya",
+          "Medan"
+        ]
+      }
+    ]
+  },
+  {
+    "IdLevel": 2,
+    "NamaLevel": "Level 2",
+    "SoalList": []
+  }
 ]
