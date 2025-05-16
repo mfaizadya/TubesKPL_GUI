@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.IO;
+using AuthAPI;
 
 
 namespace TubesKPL
@@ -17,9 +18,15 @@ namespace TubesKPL
     {
         private List<Level> daftarLevel = new List<Level>();
         private string filePath = "data_level.json";
+        LoginResponse loginData;
         public Kelola_Level_dan_Soal()
         {
             InitializeComponent();
+        }
+        public Kelola_Level_dan_Soal(LoginResponse loginData)
+        {
+            InitializeComponent();
+            this.loginData = loginData;
         }
 
         private void Kelola_Level_dan_Soal_Load(object sender, EventArgs e)
@@ -85,10 +92,15 @@ namespace TubesKPL
 
         private void Kelolalv_Click(object sender, EventArgs e)
         {
-            KelolaSoal formKelolaSoal = new KelolaSoal();
-            formKelolaSoal.Show();
-            this.Close();
+            if (listBoxLevel.SelectedIndex >= 0)
+            {
+                Level selected = daftarLevel[listBoxLevel.SelectedIndex];
+                KelolaSoal formKelolaSoal = new KelolaSoal(selected);
+                formKelolaSoal.Show();
+                this.Close();
+            }
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -115,6 +127,13 @@ namespace TubesKPL
         {
             string json = JsonSerializer.Serialize(daftarLevel, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filePath, json);
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            MenuAdmin formMenuAdmin = new MenuAdmin();
+            formMenuAdmin.Show();
+            this.Close();
         }
     }
 }

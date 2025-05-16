@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TubesKPL
 {
-    public enum JenisSoal { Esai, PilihanGanda}
+    public enum JenisSoal { Esai = 0, PilihanGanda = 1 }
     public class Soal
     {
         public int Id { get; set; }
