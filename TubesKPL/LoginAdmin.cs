@@ -26,7 +26,7 @@ namespace TubesKPL
         {
             LoginPelajar formLoginPelajar = new LoginPelajar();
             formLoginPelajar.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

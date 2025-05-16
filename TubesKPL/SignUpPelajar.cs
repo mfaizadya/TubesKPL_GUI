@@ -51,14 +51,14 @@ namespace TubesKPL
         {
             LoginPelajar formLoginPelajar = new LoginPelajar();
             formLoginPelajar.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void buttonLoginAdmin_Click(object sender, EventArgs e)
         {
             LoginAdmin formLoginAdmin = new LoginAdmin();
             formLoginAdmin.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }
