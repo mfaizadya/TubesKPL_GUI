@@ -53,5 +53,10 @@ namespace TubesKPL
         {
 
         }
+
+        private void FormMenambahSoalEssay_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

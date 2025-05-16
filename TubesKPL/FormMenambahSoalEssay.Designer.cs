@@ -102,6 +102,7 @@
             Controls.Add(labelJudul);
             Name = "FormMenambahSoalEssay";
             Text = "FormMenambahSoalEssay";
+            Load += FormMenambahSoalEssay_Load;
             ResumeLayout(false);
             PerformLayout();
         }

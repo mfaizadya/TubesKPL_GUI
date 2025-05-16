@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AuthAPI;
+using static TubesKPL.MenuPelajar;
 
 namespace TubesKPL
 {
     public partial class MenuAdmin : Form
     {
         LoginResponse loginData;
+        
+
         public MenuAdmin(LoginResponse loginData)
         {
             InitializeComponent();
@@ -28,9 +31,8 @@ namespace TubesKPL
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LoginAdmin formLoginAdmin = new LoginAdmin();
-            formLoginAdmin.Show();
-            this.Close();
+            AppStateManager.Instance.SetState(AppState.Logout);
+            AppStateManager.Instance.ApplyState(this);
         }
 
         private void MenuAdmin_Load(object sender, EventArgs e)
@@ -57,5 +59,9 @@ namespace TubesKPL
             formAttemptReview.Show();
             this.Close();
         }
+
+       
     }
+
+
 }
