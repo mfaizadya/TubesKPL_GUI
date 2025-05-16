@@ -23,6 +23,7 @@ namespace TubesKPL
 
         private void LoginPelajar_Load(object sender, EventArgs e)
         {
+
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -41,6 +42,9 @@ namespace TubesKPL
                 if (loginData != null && !string.IsNullOrEmpty(loginData.nama))
                 {
                     labelOutput.Text = $"Login berhasil, selamat datang {loginData.nama}!";
+                    MenuPelajar menuForm = new MenuPelajar(loginData.nama);
+                    menuForm.Show();
+                    this.Hide();
                 }
                 else
                 {
