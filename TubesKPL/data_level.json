@@ -1,0 +1,12 @@
+[
+    {
+        "IdLevel": 1,
+        "NamaLevel": "Level 1",
+        "SoalList": []
+    },
+    {
+        "IdLevel": 2,
+        "NamaLevel": "Level 2",
+        "SoalList": []
+    }
+]
