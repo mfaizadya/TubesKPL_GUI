@@ -15,22 +15,35 @@ namespace TubesKPL
 {
     public partial class MenuPelajar : Form
     {
-        private string namaPengguna;
-        public MenuPelajar(string nama)
+        LoginResponse loginData;
+        public MenuPelajar(LoginResponse loginData)
         {
             InitializeComponent();
-            namaPengguna = nama;
+            this.loginData = loginData;
+            labelNama.Text = $"Selamat datang di Logilearn, {loginData.nama}!";
         }
 
         private void MenuPelajar_Load(object sender, EventArgs e)
         {
 
-            labelNama.Text = $"Login berhasil, selamat datang {namaPengguna}!";
+
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void labelNama_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReviewAttempt_Click(object sender, EventArgs e)
+        {
+            AttemptReview formAttemptReview = new AttemptReview("pelajar", loginData);
+            formAttemptReview.Show();
+            this.Close();
         }
     }
 }

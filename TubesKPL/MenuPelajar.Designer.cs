@@ -29,23 +29,39 @@
         private void InitializeComponent()
         {
             labelNama = new Label();
+            buttonReviewAttempt = new Button();
             SuspendLayout();
             // 
             // labelNama
             // 
             labelNama.AutoSize = true;
-            labelNama.Location = new Point(47, 35);
+            labelNama.Location = new Point(29, 22);
+            labelNama.Margin = new Padding(2, 0, 2, 0);
             labelNama.Name = "labelNama";
-            labelNama.Size = new Size(133, 32);
+            labelNama.Size = new Size(85, 20);
             labelNama.TabIndex = 0;
             labelNama.Text = "LabelNama";
+            labelNama.Click += labelNama_Click;
+            // 
+            // buttonReviewAttempt
+            // 
+            buttonReviewAttempt.Location = new Point(165, 139);
+            buttonReviewAttempt.Margin = new Padding(3, 4, 3, 4);
+            buttonReviewAttempt.Name = "buttonReviewAttempt";
+            buttonReviewAttempt.Size = new Size(153, 31);
+            buttonReviewAttempt.TabIndex = 4;
+            buttonReviewAttempt.Text = "Review Attempt";
+            buttonReviewAttempt.UseVisualStyleBackColor = true;
+            buttonReviewAttempt.Click += buttonReviewAttempt_Click;
             // 
             // MenuPelajar
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(492, 281);
+            Controls.Add(buttonReviewAttempt);
             Controls.Add(labelNama);
+            Margin = new Padding(2);
             Name = "MenuPelajar";
             Text = "MenuPelajar";
             Load += MenuPelajar_Load;
@@ -56,5 +72,6 @@
         #endregion
 
         private Label labelNama;
+        private Button buttonReviewAttempt;
     }
 }
