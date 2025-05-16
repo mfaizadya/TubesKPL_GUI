@@ -10,15 +10,16 @@ using System.Windows.Forms;
 
 namespace TubesKPL
 {
-    public partial class MenambahSoalPilgan : Form
+
+    public partial class FormMenambahSoalPilgan : Form
     {
-        public MenambahSoalPilgan()
+        public FormMenambahSoalPilgan()
         {
             InitializeComponent();
         }
 
 
-
+        public SoalLibrary.Soal SoalBaru { get; private set; }
 
         private void txtSoal_TextChanged(object sender, EventArgs e)
         {
@@ -73,12 +74,21 @@ namespace TubesKPL
                 return;
             }
 
-            MessageBox.Show($"Soal berhasil disimpan!\n\nSoal: {soal}\nJawaban: {jawaban}\nJumlah Opsi: {opsiList.Count}", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SoalBaru = new SoalLibrary.Soal
+            {
+                Pertanyaan = soal,
+                Jawaban = jawaban,
+                Jenis = SoalLibrary.JenisSoal.PilihanGanda,
+                Opsi = opsiList
+            };
 
-            txtSoal.Clear();
-            txtOption.Clear();
-            lstOptions.Items.Clear();
-            txtJawaban.Clear();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void MenambahSoalPilgan_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

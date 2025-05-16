@@ -74,7 +74,7 @@
             button4.Name = "button4";
             button4.Size = new Size(86, 31);
             button4.TabIndex = 4;
-            button4.Text = "LogOut";
+            button4.Text = "Log Out";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
