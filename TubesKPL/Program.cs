@@ -12,7 +12,7 @@ namespace TubesKPL
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             // Application.Run(new LoginPelajar());
-            Application.Run(new NilaiEsai());
+            Application.Run(new LoginPelajar());
         }
     }
 }
