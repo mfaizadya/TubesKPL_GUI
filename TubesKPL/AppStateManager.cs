@@ -28,12 +28,22 @@ namespace TubesKPL
 
         public void ApplyState(Form currentForm)
         {
+            if (currentForm == null)
+            {
+                Console.WriteLine("[AppStateManager] currentForm is null.");
+                return;
+            }
+
             switch (currentState)
             {
                 case AppState.Logout:
                     var login = new LoginPelajar();
                     login.Show();
                     currentForm.Close();
+                    break;
+
+                default:
+                    Console.WriteLine($"[AppStateManager] Unhandled AppState: {currentState}");
                     break;
             }
         }
