@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuthAPI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,12 +14,14 @@ namespace TubesKPL
     public partial class NilaiEsai : Form
     {
         private Dictionary<string, string> jawabanPelajar = new Dictionary<string, string>();
+        private LoginResponse loginData;
 
-        public NilaiEsai()
+        public NilaiEsai(AuthAPI.LoginResponse loginData)
         {
             InitializeComponent();
             InitDummyData();
             InitForm();
+            this.loginData = loginData;
         }
 
         private void InitDummyData()
@@ -92,6 +95,13 @@ namespace TubesKPL
             txtJawabanEsai.Clear();
             txtSkorMax.Clear();
             txtSkorPelajar.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MenuAdmin formMenuAdmin = new MenuAdmin(loginData);
+            formMenuAdmin.Show();
+            this.Close();
         }
     }
 }

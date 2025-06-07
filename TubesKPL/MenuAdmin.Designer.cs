@@ -33,24 +33,24 @@
             button3 = new Button();
             button4 = new Button();
             labelNama = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(403, 53);
+            label1.Location = new Point(353, 40);
             label1.Name = "label1";
-            label1.Size = new Size(94, 20);
+            label1.Size = new Size(77, 15);
             label1.TabIndex = 0;
             label1.Text = "Menu Admin";
             label1.Click += label1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(347, 109);
-            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Location = new Point(304, 82);
             button2.Name = "button2";
-            button2.Size = new Size(209, 31);
+            button2.Size = new Size(183, 23);
             button2.TabIndex = 2;
             button2.Text = "Mengelola Level dan soal";
             button2.UseVisualStyleBackColor = true;
@@ -58,10 +58,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(374, 185);
-            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Location = new Point(330, 163);
             button3.Name = "button3";
-            button3.Size = new Size(153, 31);
+            button3.Size = new Size(134, 23);
             button3.TabIndex = 3;
             button3.Text = "Review Attempt";
             button3.UseVisualStyleBackColor = true;
@@ -69,10 +68,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(670, 43);
-            button4.Margin = new Padding(3, 4, 3, 4);
+            button4.Location = new Point(586, 32);
             button4.Name = "button4";
-            button4.Size = new Size(86, 31);
+            button4.Size = new Size(75, 23);
             button4.TabIndex = 4;
             button4.Text = "Log Out";
             button4.UseVisualStyleBackColor = true;
@@ -81,23 +79,33 @@
             // labelNama
             // 
             labelNama.AutoSize = true;
-            labelNama.Location = new Point(12, 43);
+            labelNama.Location = new Point(10, 32);
             labelNama.Name = "labelNama";
-            labelNama.Size = new Size(0, 20);
+            labelNama.Size = new Size(0, 15);
             labelNama.TabIndex = 5;
             labelNama.Click += label2_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(342, 123);
+            button1.Name = "button1";
+            button1.Size = new Size(103, 23);
+            button1.TabIndex = 6;
+            button1.Text = "Menilai Esai";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MenuAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(labelNama);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MenuAdmin";
             Text = "MenuAdmin";
             Load += MenuAdmin_Load;
@@ -112,5 +120,6 @@
         private Button button3;
         private Button button4;
         private Label labelNama;
+        private Button button1;
     }
 }
