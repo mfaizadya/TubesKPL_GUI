@@ -15,7 +15,7 @@ namespace TubesKPL
     public partial class MenuAdmin : Form
     {
         LoginResponse loginData;
-        
+
 
         public MenuAdmin(LoginResponse loginData)
         {
@@ -55,12 +55,17 @@ namespace TubesKPL
         private void button3_Click(object sender, EventArgs e)
         {
 
-            AttemptReview formAttemptReview = new AttemptReview("admin",loginData);
+            AttemptReview formAttemptReview = new AttemptReview("admin", loginData);
             formAttemptReview.Show();
             this.Close();
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NilaiEsai formNilaiEsai = new NilaiEsai(loginData);
+            formNilaiEsai.Show();
+            this.Close();
+        }
     }
 
 

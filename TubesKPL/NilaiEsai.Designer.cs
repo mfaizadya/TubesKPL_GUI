@@ -35,6 +35,9 @@
             btnSimpan = new Button();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // cmbPelajar
@@ -99,11 +102,42 @@
             label2.TabIndex = 6;
             label2.Text = "Skor pelajar: ";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(43, 39);
+            label3.Name = "label3";
+            label3.Size = new Size(44, 15);
+            label3.TabIndex = 7;
+            label3.Text = "Pilih ID";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(43, 93);
+            label4.Name = "label4";
+            label4.Size = new Size(52, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Jawaban";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(637, 370);
+            button1.Name = "button1";
+            button1.Size = new Size(59, 23);
+            button1.TabIndex = 9;
+            button1.Text = "back";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // NilaiEsai
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
+            Controls.Add(label4);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnSimpan);
@@ -126,5 +160,8 @@
         private Button btnSimpan;
         private Label label1;
         private Label label2;
+        private Label label3;
+        private Label label4;
+        private Button button1;
     }
 }
