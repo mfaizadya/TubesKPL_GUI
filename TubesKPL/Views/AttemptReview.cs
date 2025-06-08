@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AuthAPI;
+using System.Text;
+using System.Text.Json;
 
 namespace TubesKPL
 {
@@ -33,19 +35,21 @@ namespace TubesKPL
 
         private void LoadAttempt(string loginAs, string username)
         {
-            var allAttempts = new List<Attempt>
+            List<Attempt> listAttempts = new List<Attempt>();
+
+            string outputPath = "data_attempt.json";
+            if (File.Exists(outputPath))
             {
-                new Attempt(1, "pela1", "1", 95, DateTime.Now),
-                new Attempt(2, "pela2", "1", 70, DateTime.Now.AddDays(-2)),
-                new Attempt(3, "pela2", "1", 50, DateTime.Now.AddDays(-2)),
-            };
+                string existingJson = File.ReadAllText(outputPath);
+                listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
+            }
             if (loginAs == "admin")
             {
-                attempts = allAttempts;
+                attempts = listAttempts;
             }
             else
             {
-                attempts = allAttempts.Where(a => a.UserName == username).ToList();
+                attempts = listAttempts.Where(a => a.UserName == username).ToList();
             }
         }
 
