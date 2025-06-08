@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TubesKPL.Models;
 
 namespace TubesKPL
 {
@@ -27,11 +28,7 @@ namespace TubesKPL
             labelLevel.Text = $"Level {level.IdLevel}!";
             LoadSoal();
         }
-        public class JawabanPengguna
-        {
-            public int IdSoal { get; set; }
-            public string Jawaban { get; set; } = "";
-        }
+        
 
         List<JawabanPengguna> jawabanUser = new List<JawabanPengguna>();
 
@@ -77,6 +74,7 @@ namespace TubesKPL
         {
             var soal = level.SoalList[currentSoalIndex];
             string jawaban = "";
+            double skor=0;
 
             if (soal.Jenis == 0)
             {
@@ -94,8 +92,13 @@ namespace TubesKPL
                 existing.Jawaban = jawaban;
             }
             else
-            {
-                jawabanUser.Add(new JawabanPengguna { IdSoal = soal.Id, Jawaban = jawaban });
+            { 
+                if (jawaban == soal.Jawaban)
+                {
+                    skor++;
+                }
+                jawabanUser.Add(new JawabanPengguna { IdSoal = soal.Id, Jawaban = jawaban , Skor = skor});
+                
             }
         }
 
@@ -129,8 +132,21 @@ namespace TubesKPL
         {
             SimpanJawabanSaatIni();
 
-            string outputPath = $"jawaban_{loginData.nama}.json";
-            string jsonOutput = JsonSerializer.Serialize(jawabanUser, new JsonSerializerOptions { WriteIndented = true });
+            string outputPath = $"data_attempt.json";
+
+            List<Attempt> listAttempts = new List<Attempt>();
+
+            if (File.Exists(outputPath))
+            {
+                string existingJson = File.ReadAllText(outputPath);
+                listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
+            }
+
+            double skor = hitungNilai(jawabanUser);
+            var dataAttempt = new Attempt(listAttempts.Count,loginData.username, level.NamaLevel, skor, DateTime.Now, jawabanUser);
+            listAttempts.Add(dataAttempt);
+
+            string jsonOutput = JsonSerializer.Serialize(listAttempts, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(outputPath, jsonOutput);
 
             MessageBox.Show("Jawaban berhasil disimpan. Terima kasih!");
@@ -145,6 +161,18 @@ namespace TubesKPL
             MenuPelajar menu = new MenuPelajar(loginData);
             menu.Show();
             this.Close();
+        }
+
+        private double hitungNilai(List<JawabanPengguna> ljp)
+        {
+            double banyakSoal = 0;
+            double skor = 0;
+            foreach(JawabanPengguna jp in ljp)
+            {
+                skor += jp.Skor;
+                banyakSoal++;
+            }
+            return (skor / banyakSoal)*100;
         }
     }
 }
