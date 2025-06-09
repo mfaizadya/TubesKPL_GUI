@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoalLibrary
 {
+    // Representasi struktur data untuk sebuah soal
     public class Soal
     {
         public int Id { get; set; }
