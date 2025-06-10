@@ -1,14 +1,9 @@
 ﻿using AuthAPI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TubesKPL.Models;
 
@@ -16,22 +11,24 @@ namespace TubesKPL
 {
     public partial class PelajarLevelView : Form
     {
-        Level level;
-        int currentSoalIndex = 0;
-        LoginResponse loginData;
+        // Properti dan field utama
+        private readonly Level level;                       // Level yang sedang dikerjakan
+        private readonly LoginResponse loginData;           // Data login pelajar
+        private int currentSoalIndex = 0;                   // Indeks soal yang sedang ditampilkan
+        private readonly List<JawabanPengguna> jawabanUser = new(); // Menyimpan jawaban pelajar
 
+        // Konstruktor utama
         public PelajarLevelView(Level level, LoginResponse loginData)
         {
             InitializeComponent();
-            this.loginData = loginData;
             this.level = level;
+            this.loginData = loginData;
+
             labelLevel.Text = $"Level {level.IdLevel}!";
             LoadSoal();
         }
-        
 
-        List<JawabanPengguna> jawabanUser = new List<JawabanPengguna>();
-
+        // Fungsi untuk menampilkan soal sesuai indeks
         private void LoadSoal()
         {
             if (level.SoalList != null && level.SoalList.Count > 0 && currentSoalIndex < level.SoalList.Count)
@@ -39,42 +36,40 @@ namespace TubesKPL
                 var soal = level.SoalList[currentSoalIndex];
                 labelSoal.Text = soal.Pertanyaan;
 
+                // Jika soal berupa isian (jenis = 0)
                 if (soal.Jenis == 0)
                 {
                     txtJawaban.Visible = true;
-                    txtJawaban.Text = ""; // kosong untuk input
+                    txtJawaban.Text = "";
                     listBoxOpsi.Visible = false;
                 }
-                else if (soal.Jenis != 0)
+                // Jika soal pilihan ganda
+                else
                 {
                     txtJawaban.Visible = false;
                     listBoxOpsi.Visible = true;
                     listBoxOpsi.Items.Clear();
+
                     foreach (var opsi in soal.Opsi)
                     {
                         listBoxOpsi.Items.Add(opsi);
                     }
+
                     listBoxOpsi.ClearSelected();
                 }
 
-                // Tampilkan tombol selesai hanya di soal terakhir
-                if (currentSoalIndex == level.SoalList.Count - 1)
-                {
-                    buttonSelesai.Visible = true;
-                    buttonNext.Visible = false;
-                }
-                else
-                {
-                    buttonSelesai.Visible = false;
-                }
+                // Tampilkan tombol selesai jika soal terakhir
+                buttonSelesai.Visible = currentSoalIndex == level.SoalList.Count - 1;
+                buttonNext.Visible = !buttonSelesai.Visible;
             }
         }
 
+        // Menyimpan jawaban pengguna untuk soal yang sedang aktif
         private void SimpanJawabanSaatIni()
         {
             var soal = level.SoalList[currentSoalIndex];
             string jawaban = "";
-            double skor=0;
+            double skor = 0;
 
             if (soal.Jenis == 0)
             {
@@ -85,34 +80,30 @@ namespace TubesKPL
                 jawaban = listBoxOpsi.SelectedItem.ToString();
             }
 
-            // Cek apakah jawaban untuk soal ini sudah ada
+            // Perbarui jika sudah ada jawaban untuk soal ini
             var existing = jawabanUser.FirstOrDefault(j => j.IdSoal == soal.Id);
+
             if (existing != null)
             {
                 existing.Jawaban = jawaban;
             }
             else
-            { 
+            {
                 if (jawaban == soal.Jawaban)
                 {
                     skor++;
                 }
-                jawabanUser.Add(new JawabanPengguna { IdSoal = soal.Id, Jawaban = jawaban , Skor = skor});
-                
+
+                jawabanUser.Add(new JawabanPengguna
+                {
+                    IdSoal = soal.Id,
+                    Jawaban = jawaban,
+                    Skor = skor
+                });
             }
         }
 
-
-        private void labelSoal_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Event tombol "Next" ditekan
         private void button1_Click(object sender, EventArgs e)
         {
             SimpanJawabanSaatIni();
@@ -128,22 +119,32 @@ namespace TubesKPL
             }
         }
 
+        // Event tombol "Finish" ditekan
         private void button1_Click_1(object sender, EventArgs e)
         {
             SimpanJawabanSaatIni();
 
-            string outputPath = $"data_attempt.json";
+            string outputPath = "data_attempt.json";
+            List<Attempt> listAttempts = new();
 
-            List<Attempt> listAttempts = new List<Attempt>();
-
+            // Ambil data attempt sebelumnya jika ada
             if (File.Exists(outputPath))
             {
                 string existingJson = File.ReadAllText(outputPath);
                 listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
             }
 
-            double skor = hitungNilai(jawabanUser);
-            var dataAttempt = new Attempt(listAttempts.Count,loginData.username, level.NamaLevel, skor, DateTime.Now, jawabanUser);
+            // Hitung skor total dan simpan attempt
+            double skor = HitungNilai(jawabanUser);
+            var dataAttempt = new Attempt(
+                listAttempts.Count,
+                loginData.username,
+                level.NamaLevel,
+                skor,
+                DateTime.Now,
+                jawabanUser
+            );
+
             listAttempts.Add(dataAttempt);
 
             string jsonOutput = JsonSerializer.Serialize(listAttempts, new JsonSerializerOptions { WriteIndented = true });
@@ -151,11 +152,13 @@ namespace TubesKPL
 
             MessageBox.Show("Jawaban berhasil disimpan. Terima kasih!");
 
+            // Kembali ke menu pelajar
             MenuPelajar menu = new MenuPelajar(loginData);
             menu.Show();
             this.Close();
         }
 
+        // Event tombol "Kembali ke Menu" ditekan
         private void button1_Click_2(object sender, EventArgs e)
         {
             MenuPelajar menu = new MenuPelajar(loginData);
@@ -163,16 +166,18 @@ namespace TubesKPL
             this.Close();
         }
 
-        private double hitungNilai(List<JawabanPengguna> ljp)
+        // Fungsi untuk menghitung nilai akhir (dalam persen)
+        private double HitungNilai(List<JawabanPengguna> ljp)
         {
-            double banyakSoal = 0;
-            double skor = 0;
-            foreach(JawabanPengguna jp in ljp)
-            {
-                skor += jp.Skor;
-                banyakSoal++;
-            }
-            return (skor / banyakSoal)*100;
+            if (ljp.Count == 0) return 0;
+
+            double totalSkor = ljp.Sum(jp => jp.Skor);
+            return (totalSkor / ljp.Count) * 100;
         }
+
+        // Event klik label - bisa dihapus jika tidak digunakan
+        private void labelSoal_Click(object sender, EventArgs e) { }
+
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }
