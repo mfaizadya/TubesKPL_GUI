@@ -38,17 +38,18 @@ namespace TubesKPL
         {
             txtJawabanEsai.ReadOnly = true;
             txtJawabanEsai.Multiline = true;
+            cmbPelajar.SelectedIndex = -1;
         }
 
         private void cmbPelajar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPelajar.SelectedItem == null) return; // <- Tambahan untuk cegah null
-
-            string selectedId = cmbPelajar.SelectedItem.ToString();
-
-            if (jawabanPelajar.ContainsKey(selectedId))
+            if (cmbPelajar.SelectedItem is string selectedId && jawabanPelajar.TryGetValue(selectedId, out string jawaban))
             {
-                txtJawabanEsai.Text = jawabanPelajar[selectedId];
+                txtJawabanEsai.Text = jawaban;
+            }
+            else
+            {
+                txtJawabanEsai.Clear();
             }
         }
 
@@ -71,30 +72,39 @@ namespace TubesKPL
         {
             if (cmbPelajar.SelectedItem == null)
             {
-                MessageBox.Show("Silakan pilih pelajar terlebih dahulu.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowError("Silakan pilih pelajar terlebih dahulu.");
                 return;
             }
 
-            if (!double.TryParse(txtSkorMax.Text.Trim(), out double skorMax) || skorMax == 0)
+            if (!double.TryParse(txtSkorMax.Text.Trim(), out double skorMax) || skorMax <= 0)
             {
-                MessageBox.Show("Skor maksimal harus berupa angka dan lebih dari 0.", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("Skor maksimal harus berupa angka dan lebih dari 0.");
                 return;
             }
 
             if (!double.TryParse(txtSkorPelajar.Text.Trim(), out double skorPelajar) || skorPelajar < 0 || skorPelajar > skorMax)
             {
-                MessageBox.Show("Skor pelajar tidak valid atau melebihi skor maksimal.", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("Skor pelajar tidak valid atau melebihi skor maksimal.");
                 return;
             }
 
             string id = cmbPelajar.SelectedItem.ToString();
             MessageBox.Show($"Penilaian disimpan:\nID Pelajar: {id}\nSkor: {skorPelajar}/{skorMax}", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Reset form setelah simpan
+            ResetForm();
+        }
+
+        private void ResetForm()
+        {
             cmbPelajar.SelectedIndex = -1;
             txtJawabanEsai.Clear();
             txtSkorMax.Clear();
             txtSkorPelajar.Clear();
+        }
+
+        private void ShowError(string v)
+        {
+            throw new NotImplementedException();
         }
 
         private void button1_Click(object sender, EventArgs e)
