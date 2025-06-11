@@ -29,36 +29,39 @@
         private void InitializeComponent()
         {
             dataGridViewAttempt = new DataGridView();
-            buttonBack = new Button();
+            ButtonBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttempt).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewAttempt
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttempt.Location = new Point(12, 21);
+            dataGridViewAttempt.Location = new Point(10, 16);
+            dataGridViewAttempt.Margin = new Padding(3, 2, 3, 2);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(612, 404);
+            dataGridViewAttempt.Size = new Size(716, 303);
             dataGridViewAttempt.TabIndex = 0;
             // 
-            // buttonBack
+            // ButtonBack
             // 
-            buttonBack.Location = new Point(656, 348);
-            buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(118, 39);
-            buttonBack.TabIndex = 1;
-            buttonBack.Text = "Back";
-            buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += buttonBack_Click;
+            ButtonBack.Location = new Point(732, 267);
+            ButtonBack.Margin = new Padding(3, 2, 3, 2);
+            ButtonBack.Name = "ButtonBack";
+            ButtonBack.Size = new Size(103, 29);
+            ButtonBack.TabIndex = 1;
+            ButtonBack.Text = "Back";
+            ButtonBack.UseVisualStyleBackColor = true;
+            ButtonBack.Click += ButtonBack_Click;
             // 
             // AttemptReview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(buttonBack);
+            ClientSize = new Size(861, 338);
+            Controls.Add(ButtonBack);
             Controls.Add(dataGridViewAttempt);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AttemptReview";
             Text = "AttemptReview";
             Load += AttemptReview_Load;
@@ -69,6 +72,6 @@
         #endregion
 
         private DataGridView dataGridViewAttempt;
-        private Button buttonBack;
+        private Button ButtonBack;
     }
 }
