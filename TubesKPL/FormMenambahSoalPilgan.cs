@@ -124,7 +124,7 @@ namespace TubesKPL
 
         private void MenambahSoalPilgan_Load(object sender, EventArgs e)
         {
-
+            ;
         }
     }
 }
