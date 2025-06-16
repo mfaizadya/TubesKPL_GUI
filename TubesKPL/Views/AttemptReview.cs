@@ -19,13 +19,25 @@ namespace TubesKPL
         string loginAs;
         LoginResponse loginData;
 
+        /// <summary>
+        /// Konstruktor untuk class AttemptReview.
+        /// </summary>
         public AttemptReview(string loginAs, LoginResponse loginData)
         {
             InitializeComponent();
             this.loginAs = loginAs;
             this.loginData = loginData;
-            LoadAttempt(loginAs, loginData.username);
-            TampilkanAttempt();
+
+            try
+            {
+                LoadAttempt(loginAs, loginData.username);
+                TampilkanAttempt();
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan saat memuat data attempt: {ex.Message}",
+                   "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void AttemptReview_Load(object sender, EventArgs e)
@@ -33,33 +45,55 @@ namespace TubesKPL
 
         }
 
+        /// <summary>
+        /// Method yang digunakan untuk membaca file JSON yang ada pada dataPath kemudian melakukan deserialisasi menjadi List Attempt pada variable attempts.
+        /// </summary>
         private void LoadAttempt(string loginAs, string username)
         {
             List<Attempt> listAttempts = new List<Attempt>();
+            string dataPath = "data_attempt.json";
 
-            string outputPath = "data_attempt.json";
-            if (File.Exists(outputPath))
+            try
             {
-                string existingJson = File.ReadAllText(outputPath);
-                listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
-            }
-            if (loginAs == "admin")
+                if (File.Exists(dataPath))
+                {
+                    string existingJson = File.ReadAllText(dataPath);
+                    listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
+                }
+                if (loginAs == "admin")
+                {
+                    attempts = listAttempts;
+                }
+                else
+                {
+                    attempts = listAttempts.Where(a => a.UserName == username).ToList();
+                }
+            } catch (JsonException je)
             {
-                attempts = listAttempts;
-            }
-            else
+                MessageBox.Show($"Format data JSON tidak valid: {je.Message}",
+                    "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } catch (IOException ie)
             {
-                attempts = listAttempts.Where(a => a.UserName == username).ToList();
+                MessageBox.Show($"Kesalahan saat membaca file: {ie.Message}",
+                    "IO Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
         }
 
+        /// <summary>
+        /// Method untuk menampilkan List Attempt yang sudah di-load, jika tidak ada data Attempt maka tidak menampilkan data apapun pada data grid.
+        /// </summary>
         private void TampilkanAttempt()
         {
             dataGridViewAttempt.DataSource = null;
             dataGridViewAttempt.DataSource = attempts;
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Method yang dijalankan ketika button back ditekan, mengarahkan pengguna ke menu berdasarkan role nya.
+        /// </summary>
+        private void ButtonBack_Click(object sender, EventArgs e)
         {
             if (loginAs == "admin")
             {

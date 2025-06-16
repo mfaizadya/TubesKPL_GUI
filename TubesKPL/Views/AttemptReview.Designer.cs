@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             dataGridViewAttempt = new DataGridView();
-            buttonBack = new Button();
+            ButtonBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttempt).BeginInit();
             SuspendLayout();
             // 
@@ -43,7 +43,7 @@
             dataGridViewAttempt.Size = new Size(994, 646);
             dataGridViewAttempt.TabIndex = 0;
             // 
-            // buttonBack
+            // ButtonBack
             // 
             buttonBack.Location = new Point(1066, 557);
             buttonBack.Margin = new Padding(5, 5, 5, 5);
@@ -72,6 +72,6 @@
         #endregion
 
         private DataGridView dataGridViewAttempt;
-        private Button buttonBack;
+        private Button ButtonBack;
     }
 }
