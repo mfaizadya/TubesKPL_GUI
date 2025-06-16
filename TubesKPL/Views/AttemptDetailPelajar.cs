@@ -12,12 +12,12 @@ namespace TubesKPL.Views
 {
     public partial class AttemptDetailPelajar : Form
     {
-        // Private field untuk menyimpan state form
-        private Attempt attempt;
-        private List<Level> levels;
-        private LoginResponse loginData;
+        // Private field untuk menyimpan data state form
+        private Attempt _attempt;
+        private List<Level> _levels;
+        private LoginResponse _loginData;
 
-        // Konstanta nama file
+        // Konstanta file path
         private const string LevelFilePath = "data_level.json";
 
         public AttemptDetailPelajar()
@@ -25,86 +25,88 @@ namespace TubesKPL.Views
             InitializeComponent();
         }
 
-        // Constructor utama yang dipakai saat form dipanggil
+        /// <summary>
+        /// Konstruktor utama, menerima parameter data attempt dan login.
+        /// </summary>
         public AttemptDetailPelajar(Attempt attempt, LoginResponse loginData)
         {
             InitializeComponent();
 
-            // Validasi null argument agar aman (secure code)
-            this.attempt = attempt ?? throw new ArgumentNullException(nameof(attempt));
-            this.loginData = loginData ?? throw new ArgumentNullException(nameof(loginData));
+            // Validasi null argument (secure code)
+            _attempt = attempt ?? throw new ArgumentNullException(nameof(attempt));
+            _loginData = loginData ?? throw new ArgumentNullException(nameof(loginData));
 
             try
             {
-                LoadLevelData();   // Load file level
-                DisplayDetail();   // Tampilkan data ke grid
+                LoadLevelData();
+                DisplayAttemptDetail();
             }
             catch (Exception ex)
             {
-                // Jika terjadi error, tampilkan pesan
                 MessageBox.Show($"Gagal memuat data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AttemptDetailPelajar_Load(object sender, EventArgs e)
         {
+
         }
 
-        // Method untuk membaca file level dari file JSON
+        /// <summary>
+        /// Membaca file data level JSON dan melakukan deserialisasi.
+        /// </summary>
         private void LoadLevelData()
         {
-            // Validasi apakah file ada
             if (!File.Exists(LevelFilePath))
                 throw new FileNotFoundException($"File level tidak ditemukan: {LevelFilePath}");
 
-            // Baca isi file
-            string json = File.ReadAllText(LevelFilePath);
+            string jsonContent = File.ReadAllText(LevelFilePath);
+            _levels = JsonSerializer.Deserialize<List<Level>>(jsonContent) ?? new List<Level>();
 
-            // Deserialize ke list level, aman terhadap null
-            levels = JsonSerializer.Deserialize<List<Level>>(json) ?? new List<Level>();
-
-            // Validasi apakah data kosong
-            if (levels.Count == 0)
+            if (_levels.Count == 0)
                 throw new Exception("Data level kosong.");
         }
 
-        // Method utama untuk menampilkan data attempt ke DataGridView
-        private void DisplayDetail()
+        /// <summary>
+        /// Menampilkan data attempt ke dalam DataGridView (read-only).
+        /// </summary>
+        private void DisplayAttemptDetail()
         {
-            // Cari level yang sesuai dengan level pada attempt
-            Level level = levels.FirstOrDefault(l => l.NamaLevel == attempt.Level);
-            if (level == null)
-                throw new Exception($"Level '{attempt.Level}' tidak ditemukan.");
+            // Cari level berdasarkan level attempt
+            Level currentLevel = _levels.FirstOrDefault(l => l.NamaLevel == _attempt.Level);
+            if (currentLevel == null)
+                throw new Exception($"Level '{_attempt.Level}' tidak ditemukan.");
 
-            // Buat datatable untuk binding ke DataGridView
-            DataTable table = new DataTable();
-            table.Columns.Add("ID Soal", typeof(int));
-            table.Columns.Add("Pertanyaan", typeof(string));
-            table.Columns.Add("Jawaban User", typeof(string));
-            table.Columns.Add("Kunci Jawaban", typeof(string));
-            table.Columns.Add("Nilai", typeof(double));
+            // Buat datatable binding ke DataGridView
+            DataTable detailTable = new DataTable();
+            detailTable.Columns.Add("ID Soal", typeof(int));
+            detailTable.Columns.Add("Pertanyaan", typeof(string));
+            detailTable.Columns.Add("Jawaban User", typeof(string));
+            detailTable.Columns.Add("Kunci Jawaban", typeof(string));
+            detailTable.Columns.Add("Nilai", typeof(double));
 
-            // Loop semua jawaban attempt dan masukkan ke tabel
-            foreach (var jawaban in attempt.ListJawaban)
+            // Loop semua jawaban attempt untuk mengisi tabel
+            foreach (var answer in _attempt.ListJawaban)
             {
-                var soal = level.SoalList.FirstOrDefault(s => s.Id == jawaban.IdSoal);
-                if (soal != null)
+                var question = currentLevel.SoalList.FirstOrDefault(s => s.Id == answer.IdSoal);
+                if (question != null)
                 {
-                    table.Rows.Add(soal.Id, soal.Pertanyaan, jawaban.Jawaban, soal.Jawaban, jawaban.Skor);
+                    detailTable.Rows.Add(question.Id, question.Pertanyaan, answer.Jawaban, question.Jawaban, answer.Skor);
                 }
             }
 
-            // Binding data ke DataGridView
-            dataGridViewDetail.DataSource = table;
+            dataGridViewDetail.DataSource = detailTable;
 
-            // Jadikan semua kolom read-only agar tidak bisa diedit oleh pelajar
-            foreach (DataGridViewColumn col in dataGridViewDetail.Columns)
+            // Set semua kolom menjadi read-only (pelajar tidak boleh mengedit)
+            foreach (DataGridViewColumn column in dataGridViewDetail.Columns)
             {
-                col.ReadOnly = true;
+                column.ReadOnly = true;
             }
         }
 
-        // Event handler untuk tombol kembali
+        /// <summary>
+        /// Event handler untuk tombol back/kembali.
+        /// </summary>
         private void back_Click(object sender, EventArgs e)
         {
             try
@@ -113,7 +115,7 @@ namespace TubesKPL.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Gagal membuka halaman review: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Gagal kembali ke halaman review: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
