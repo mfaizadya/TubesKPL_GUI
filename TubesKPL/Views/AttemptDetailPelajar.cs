@@ -3,58 +3,88 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TubesKPL.Views
 {
     public partial class AttemptDetailPelajar : Form
     {
+        // Private field untuk menyimpan state form
         private Attempt attempt;
         private List<Level> levels;
         private LoginResponse loginData;
 
-        private void AttemptDetailPelajar_Load(object sender, EventArgs e)
-        {
-
-        }
+        // Konstanta nama file
+        private const string LevelFilePath = "data_level.json";
 
         public AttemptDetailPelajar()
         {
             InitializeComponent();
         }
 
+        // Constructor utama yang dipakai saat form dipanggil
         public AttemptDetailPelajar(Attempt attempt, LoginResponse loginData)
         {
             InitializeComponent();
-            this.attempt = attempt;
-            this.loginData = loginData;
-            LoadLevelData();
-            TampilkanDetail();
+
+            // Validasi null argument agar aman (secure code)
+            this.attempt = attempt ?? throw new ArgumentNullException(nameof(attempt));
+            this.loginData = loginData ?? throw new ArgumentNullException(nameof(loginData));
+
+            try
+            {
+                LoadLevelData();   // Load file level
+                DisplayDetail();   // Tampilkan data ke grid
+            }
+            catch (Exception ex)
+            {
+                // Jika terjadi error, tampilkan pesan
+                MessageBox.Show($"Gagal memuat data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void AttemptDetailPelajar_Load(object sender, EventArgs e)
+        {
+        }
+
+        // Method untuk membaca file level dari file JSON
         private void LoadLevelData()
         {
-            string json = File.ReadAllText("data_level.json");
+            // Validasi apakah file ada
+            if (!File.Exists(LevelFilePath))
+                throw new FileNotFoundException($"File level tidak ditemukan: {LevelFilePath}");
+
+            // Baca isi file
+            string json = File.ReadAllText(LevelFilePath);
+
+            // Deserialize ke list level, aman terhadap null
             levels = JsonSerializer.Deserialize<List<Level>>(json) ?? new List<Level>();
+
+            // Validasi apakah data kosong
+            if (levels.Count == 0)
+                throw new Exception("Data level kosong.");
         }
 
-        private void TampilkanDetail()
+        // Method utama untuk menampilkan data attempt ke DataGridView
+        private void DisplayDetail()
         {
+            // Cari level yang sesuai dengan level pada attempt
             Level level = levels.FirstOrDefault(l => l.NamaLevel == attempt.Level);
-            if (level == null) return;
+            if (level == null)
+                throw new Exception($"Level '{attempt.Level}' tidak ditemukan.");
 
+            // Buat datatable untuk binding ke DataGridView
             DataTable table = new DataTable();
-            table.Columns.Add("ID Soal");
-            table.Columns.Add("Pertanyaan");
-            table.Columns.Add("Jawaban User");
-            table.Columns.Add("Kunci Jawaban");
-            table.Columns.Add("Nilai");
+            table.Columns.Add("ID Soal", typeof(int));
+            table.Columns.Add("Pertanyaan", typeof(string));
+            table.Columns.Add("Jawaban User", typeof(string));
+            table.Columns.Add("Kunci Jawaban", typeof(string));
+            table.Columns.Add("Nilai", typeof(double));
 
+            // Loop semua jawaban attempt dan masukkan ke tabel
             foreach (var jawaban in attempt.ListJawaban)
             {
                 var soal = level.SoalList.FirstOrDefault(s => s.Id == jawaban.IdSoal);
@@ -64,18 +94,31 @@ namespace TubesKPL.Views
                 }
             }
 
+            // Binding data ke DataGridView
             dataGridViewDetail.DataSource = table;
+
+            // Jadikan semua kolom read-only agar tidak bisa diedit oleh pelajar
+            foreach (DataGridViewColumn col in dataGridViewDetail.Columns)
+            {
+                col.ReadOnly = true;
+            }
         }
 
-
+        // Event handler untuk tombol kembali
         private void back_Click(object sender, EventArgs e)
         {
-            // Navigasi ke form review attempt dengan data pelajar
-            AttemptReview formAttemptReview = new AttemptReview("pelajar", loginData);
-            formAttemptReview.Show();
+            try
+            {
+                // Navigasi ke form AttemptReview untuk role pelajar
+                AttemptReview formAttemptReview = new AttemptReview("pelajar", loginData);
+                formAttemptReview.Show();
 
-            // Tutup form saat ini
-            this.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Gagal membuka halaman review: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
