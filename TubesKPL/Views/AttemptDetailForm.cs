@@ -13,25 +13,32 @@ namespace TubesKPL.Views
 {
     public partial class AttemptDetailForm : Form
     {
-        private Attempt attempt;
-        private List<Level> levels;
-        private LoginResponse loginData;
+        // Fields untuk menyimpan data saat form dibuka
+        private Attempt _attempt;
+        private List<Level> _levels;
+        private LoginResponse _loginData;
 
-        // Konstruktor default
+        // Nama file konstan untuk menghindari magic string
+        private const string LevelFilePath = "data_level.json";
+        private const string AttemptFilePath = "data_attempt.json";
+
         public AttemptDetailForm()
         {
             InitializeComponent();
         }
 
-        // Konstruktor dengan parameter Attempt
-        // Digunakan untuk menampilkan data attempt yang dipilih
+        /// <summary>
+        /// Konstruktor utama dengan parameter data attempt dan login.
+        /// </summary>
         public AttemptDetailForm(Attempt attempt, LoginResponse loginData)
         {
             InitializeComponent();
-            this.attempt = attempt;
-            this.loginData = loginData;
-            LoadLevelData();     // Muat data level dari file
-            TampilkanDetail();   // Tampilkan detail jawaban di DataGridView
+
+            _attempt = attempt ?? throw new ArgumentNullException(nameof(attempt));
+            _loginData = loginData ?? throw new ArgumentNullException(nameof(loginData));
+
+            LoadLevelData();
+            DisplayAttemptDetail();
         }
 
         private void AttemptDetailForm_Load(object sender, EventArgs e)
@@ -39,95 +46,127 @@ namespace TubesKPL.Views
 
         }
 
-        // Membaca data level dari file JSON dan deserialisasi ke list
+        /// <summary>
+        /// Membaca data level dari file JSON ke list of Level.
+        /// </summary>
         private void LoadLevelData()
         {
-            string json = File.ReadAllText("data_level.json");
-            levels = JsonSerializer.Deserialize<List<Level>>(json) ?? new List<Level>();
+            if (!File.Exists(LevelFilePath))
+            {
+                MessageBox.Show("File level tidak ditemukan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _levels = new List<Level>();
+                return;
+            }
+
+            string jsonContent = File.ReadAllText(LevelFilePath);
+            _levels = JsonSerializer.Deserialize<List<Level>>(jsonContent) ?? new List<Level>();
         }
 
-        // Menampilkan detail jawaban ke dalam DataGridView
-        // Mengisi kolom ID Soal, Pertanyaan, Jawaban User, Kunci Jawaban, dan Nilai
-        private void TampilkanDetail()
+        /// <summary>
+        /// Menampilkan data detail attempt ke dalam DataGridView.
+        /// </summary>
+        private void DisplayAttemptDetail()
         {
-            Level level = levels.FirstOrDefault(l => l.NamaLevel == attempt.Level);
-            if (level == null) return;
-
-            DataTable table = new DataTable();
-            table.Columns.Add("ID Soal");
-            table.Columns.Add("Pertanyaan");
-            table.Columns.Add("Jawaban User");
-            table.Columns.Add("Kunci Jawaban");
-            table.Columns.Add("Nilai");
-
-            foreach (var jawaban in attempt.ListJawaban)
+            Level currentLevel = _levels.FirstOrDefault(l => l.NamaLevel == _attempt.Level);
+            if (currentLevel == null)
             {
-                var soal = level.SoalList.FirstOrDefault(s => s.Id == jawaban.IdSoal);
+                MessageBox.Show("Level tidak ditemukan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataTable detailTable = new DataTable();
+            detailTable.Columns.Add("ID Soal", typeof(int));
+            detailTable.Columns.Add("Pertanyaan", typeof(string));
+            detailTable.Columns.Add("Jawaban User", typeof(string));
+            detailTable.Columns.Add("Kunci Jawaban", typeof(string));
+            detailTable.Columns.Add("Nilai", typeof(double));
+
+            foreach (var jawaban in _attempt.ListJawaban)
+            {
+                var soal = currentLevel.SoalList.FirstOrDefault(s => s.Id == jawaban.IdSoal);
                 if (soal != null)
                 {
-                    table.Rows.Add(soal.Id, soal.Pertanyaan, jawaban.Jawaban, soal.Jawaban, jawaban.Skor);
+                    detailTable.Rows.Add(soal.Id, soal.Pertanyaan, jawaban.Jawaban, soal.Jawaban, jawaban.Skor);
                 }
             }
 
-            dataGridViewDetail.DataSource = table;
+            dataGridViewDetail.DataSource = detailTable;
         }
 
-        // Event handler tombol "Simpan"
-        // Mengambil nilai dari DataGridView, menyimpan ke dalam objek Attempt,
-        // menghitung skor total, dan menyimpan ke file JSON
+        /// <summary>
+        /// Event handler saat tombol Simpan diklik.
+        /// </summary>
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridViewDetail.Rows)
-                {
-                    if (row.IsNewRow) continue;
+                UpdateScoresFromDataGrid();
+                CalculateTotalScore();
+                SaveUpdatedAttempt();
 
-                    object idSoalObj = row.Cells["ID Soal"].Value;
-                    object nilaiObj = row.Cells["Nilai"].Value;
-
-                    if (idSoalObj == null || nilaiObj == null) continue;
-
-                    int idSoal = Convert.ToInt32(idSoalObj);
-                    string nilaiStr = nilaiObj.ToString();
-
-                    if (double.TryParse(nilaiStr, out double skor))
-                    {
-                        var jawaban = attempt.ListJawaban.FirstOrDefault(j => j.IdSoal == idSoal);
-                        if (jawaban != null)
-                            jawaban.Skor = skor;
-                    }
-                }
-
-                // Hitung ulang skor total dari rata-rata skor tiap jawaban
-                attempt.Score = (int)(attempt.ListJawaban.Average(j => j.Skor) * 100);
-
-                // Simpan ke file JSON
-                SimpanPerubahan();
-
-                MessageBox.Show("Nilai berhasil diperbarui.", "Sukses");
+                MessageBox.Show("Nilai berhasil diperbarui.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saat menyimpan: " + ex.Message);
+                MessageBox.Show($"Error saat menyimpan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Simpan data Attempt yang telah diperbarui ke dalam file JSON
-        private void SimpanPerubahan()
+        /// <summary>
+        /// Mengambil nilai skor dari DataGridView ke dalam objek Attempt.
+        /// </summary>
+        private void UpdateScoresFromDataGrid()
         {
-            string jsonFile = "data_attempt.json";
-            var allAttempts = JsonSerializer.Deserialize<List<Attempt>>(File.ReadAllText(jsonFile)) ?? new List<Attempt>();
-
-            var target = allAttempts.FirstOrDefault(a => a.AttemptId == attempt.AttemptId);
-            if (target != null)
+            foreach (DataGridViewRow row in dataGridViewDetail.Rows)
             {
-                target.ListJawaban = attempt.ListJawaban;
-                target.Score = attempt.Score;
+                if (row.IsNewRow) continue;
+
+                if (row.Cells["ID Soal"].Value is null || row.Cells["Nilai"].Value is null) continue;
+
+                int idSoal = Convert.ToInt32(row.Cells["ID Soal"].Value);
+                string nilaiStr = row.Cells["Nilai"].Value.ToString();
+
+                if (double.TryParse(nilaiStr, out double skor))
+                {
+                    var jawaban = _attempt.ListJawaban.FirstOrDefault(j => j.IdSoal == idSoal);
+                    if (jawaban != null)
+                        jawaban.Skor = skor;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Menghitung ulang skor total attempt berdasarkan rata-rata skor semua jawaban.
+        /// </summary>
+        private void CalculateTotalScore()
+        {
+            _attempt.Score = (int)(_attempt.ListJawaban.Average(j => j.Skor) * 100);
+        }
+
+        /// <summary>
+        /// Menyimpan data attempt yang telah diperbarui ke file JSON.
+        /// </summary>
+        private void SaveUpdatedAttempt()
+        {
+            if (!File.Exists(AttemptFilePath))
+            {
+                MessageBox.Show("File attempt tidak ditemukan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            File.WriteAllText(jsonFile, JsonSerializer.Serialize(allAttempts, new JsonSerializerOptions { WriteIndented = true }));
+            string jsonContent = File.ReadAllText(AttemptFilePath);
+            var allAttempts = JsonSerializer.Deserialize<List<Attempt>>(jsonContent) ?? new List<Attempt>();
+
+            var targetAttempt = allAttempts.FirstOrDefault(a => a.AttemptId == _attempt.AttemptId);
+            if (targetAttempt != null)
+            {
+                targetAttempt.ListJawaban = _attempt.ListJawaban;
+                targetAttempt.Score = _attempt.Score;
+            }
+
+            string updatedJson = JsonSerializer.Serialize(allAttempts, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(AttemptFilePath, updatedJson);
         }
     }
 }
