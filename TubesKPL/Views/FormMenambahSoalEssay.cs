@@ -65,5 +65,10 @@ namespace TubesKPL
         {
 
         }
+
+        private void labelJudul_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

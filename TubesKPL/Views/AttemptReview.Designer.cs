@@ -36,29 +36,32 @@
             // dataGridViewAttempt
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttempt.Location = new Point(12, 21);
+            dataGridViewAttempt.Location = new Point(20, 34);
+            dataGridViewAttempt.Margin = new Padding(5, 5, 5, 5);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(612, 404);
+            dataGridViewAttempt.Size = new Size(994, 646);
             dataGridViewAttempt.TabIndex = 0;
             // 
             // buttonBack
             // 
-            buttonBack.Location = new Point(656, 348);
+            buttonBack.Location = new Point(1066, 557);
+            buttonBack.Margin = new Padding(5, 5, 5, 5);
             buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(118, 39);
+            buttonBack.Size = new Size(192, 62);
             buttonBack.TabIndex = 1;
-            buttonBack.Text = "Back";
+            buttonBack.Text = "Kembali";
             buttonBack.UseVisualStyleBackColor = true;
             buttonBack.Click += buttonBack_Click;
             // 
             // AttemptReview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1300, 720);
             Controls.Add(buttonBack);
             Controls.Add(dataGridViewAttempt);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "AttemptReview";
             Text = "AttemptReview";
             Load += AttemptReview_Load;

@@ -42,9 +42,10 @@
             // 
             // btnTambahSoalPG
             // 
-            btnTambahSoalPG.Location = new Point(547, 97);
+            btnTambahSoalPG.Location = new Point(889, 155);
+            btnTambahSoalPG.Margin = new Padding(5, 5, 5, 5);
             btnTambahSoalPG.Name = "btnTambahSoalPG";
-            btnTambahSoalPG.Size = new Size(212, 29);
+            btnTambahSoalPG.Size = new Size(344, 46);
             btnTambahSoalPG.TabIndex = 0;
             btnTambahSoalPG.Text = "Tambah Soal PG";
             btnTambahSoalPG.UseVisualStyleBackColor = true;
@@ -52,19 +53,21 @@
             // 
             // btnTambahSoalEssay
             // 
-            btnTambahSoalEssay.Location = new Point(547, 132);
+            btnTambahSoalEssay.Location = new Point(889, 211);
+            btnTambahSoalEssay.Margin = new Padding(5, 5, 5, 5);
             btnTambahSoalEssay.Name = "btnTambahSoalEssay";
-            btnTambahSoalEssay.Size = new Size(212, 29);
+            btnTambahSoalEssay.Size = new Size(344, 46);
             btnTambahSoalEssay.TabIndex = 1;
-            btnTambahSoalEssay.Text = "Tambah Soal Essay";
+            btnTambahSoalEssay.Text = "Tambah Soal Esai";
             btnTambahSoalEssay.UseVisualStyleBackColor = true;
             btnTambahSoalEssay.Click += button2_Click;
             // 
             // btnEditSoalPG
             // 
-            btnEditSoalPG.Location = new Point(547, 221);
+            btnEditSoalPG.Location = new Point(889, 354);
+            btnEditSoalPG.Margin = new Padding(5, 5, 5, 5);
             btnEditSoalPG.Name = "btnEditSoalPG";
-            btnEditSoalPG.Size = new Size(212, 29);
+            btnEditSoalPG.Size = new Size(344, 46);
             btnEditSoalPG.TabIndex = 2;
             btnEditSoalPG.Text = "Edit Soal PG";
             btnEditSoalPG.UseVisualStyleBackColor = true;
@@ -72,19 +75,21 @@
             // 
             // btnEditSoalEssay
             // 
-            btnEditSoalEssay.Location = new Point(547, 186);
+            btnEditSoalEssay.Location = new Point(889, 298);
+            btnEditSoalEssay.Margin = new Padding(5, 5, 5, 5);
             btnEditSoalEssay.Name = "btnEditSoalEssay";
-            btnEditSoalEssay.Size = new Size(212, 29);
+            btnEditSoalEssay.Size = new Size(344, 46);
             btnEditSoalEssay.TabIndex = 3;
-            btnEditSoalEssay.Text = "Edit Soal Essay";
+            btnEditSoalEssay.Text = "Edit Soal Esai";
             btnEditSoalEssay.UseVisualStyleBackColor = true;
             btnEditSoalEssay.Click += btnEditSoalEssay_Click;
             // 
             // btnHapusSoal
             // 
-            btnHapusSoal.Location = new Point(547, 277);
+            btnHapusSoal.Location = new Point(889, 443);
+            btnHapusSoal.Margin = new Padding(5, 5, 5, 5);
             btnHapusSoal.Name = "btnHapusSoal";
-            btnHapusSoal.Size = new Size(212, 29);
+            btnHapusSoal.Size = new Size(344, 46);
             btnHapusSoal.TabIndex = 4;
             btnHapusSoal.Text = "Hapus Soal";
             btnHapusSoal.UseVisualStyleBackColor = true;
@@ -93,18 +98,20 @@
             // labelPilih
             // 
             labelPilih.AutoSize = true;
-            labelPilih.Location = new Point(547, 45);
+            labelPilih.Location = new Point(889, 72);
+            labelPilih.Margin = new Padding(5, 0, 5, 0);
             labelPilih.Name = "labelPilih";
-            labelPilih.Size = new Size(156, 20);
+            labelPilih.Size = new Size(252, 32);
             labelPilih.TabIndex = 6;
             labelPilih.Text = "Pilih untuk Kelola Soal";
             // 
             // labelLevel
             // 
             labelLevel.AutoSize = true;
-            labelLevel.Location = new Point(547, 65);
+            labelLevel.Location = new Point(889, 104);
+            labelLevel.Margin = new Padding(5, 0, 5, 0);
             labelLevel.Name = "labelLevel";
-            labelLevel.Size = new Size(46, 20);
+            labelLevel.Size = new Size(74, 32);
             labelLevel.TabIndex = 7;
             labelLevel.Text = "Level:";
             labelLevel.Click += label1_Click;
@@ -112,36 +119,39 @@
             // labelAngkaLevel
             // 
             labelAngkaLevel.AutoSize = true;
-            labelAngkaLevel.Location = new Point(599, 65);
+            labelAngkaLevel.Location = new Point(973, 104);
+            labelAngkaLevel.Margin = new Padding(5, 0, 5, 0);
             labelAngkaLevel.Name = "labelAngkaLevel";
-            labelAngkaLevel.Size = new Size(42, 20);
+            labelAngkaLevel.Size = new Size(65, 32);
             labelAngkaLevel.TabIndex = 8;
             labelAngkaLevel.Text = "label";
             // 
             // listView1
             // 
-            listView1.Location = new Point(18, 21);
+            listView1.Location = new Point(29, 34);
+            listView1.Margin = new Padding(5, 5, 5, 5);
             listView1.Name = "listView1";
-            listView1.Size = new Size(493, 417);
+            listView1.Size = new Size(799, 665);
             listView1.TabIndex = 9;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // buttonBack
             // 
-            buttonBack.Location = new Point(677, 409);
+            buttonBack.Location = new Point(1100, 654);
+            buttonBack.Margin = new Padding(5, 5, 5, 5);
             buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(82, 29);
+            buttonBack.Size = new Size(133, 46);
             buttonBack.TabIndex = 10;
-            buttonBack.Text = "Back";
+            buttonBack.Text = "Kembali";
             buttonBack.UseVisualStyleBackColor = true;
             buttonBack.Click += button1_Click;
             // 
             // KelolaSoal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1300, 720);
             Controls.Add(buttonBack);
             Controls.Add(listView1);
             Controls.Add(labelAngkaLevel);
@@ -152,6 +162,7 @@
             Controls.Add(btnEditSoalPG);
             Controls.Add(btnTambahSoalEssay);
             Controls.Add(btnTambahSoalPG);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "KelolaSoal";
             Text = "KelolaSoal";
             Load += KelolaSoal_Load;
