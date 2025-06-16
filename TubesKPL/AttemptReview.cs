@@ -62,12 +62,28 @@ namespace TubesKPL
                 MenuAdmin formMenuAdmin = new MenuAdmin(loginData);
                 formMenuAdmin.Show();
                 this.Close();
-            } else
+            }
+            else
             {
                 MenuPelajar formMenuPelajar = new MenuPelajar(loginData);
                 formMenuPelajar.Show();
                 this.Close();
             }
+        }
+
+        private void detail_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAttempt.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Silakan pilih satu attempt terlebih dahulu.", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var selectedRow = dataGridViewAttempt.SelectedRows[0];
+            Attempt selectedAttempt = (Attempt)selectedRow.DataBoundItem;
+
+            LoadDetail detailForm = new LoadDetail(selectedAttempt);
+            detailForm.Show();
         }
     }
 }

@@ -15,6 +15,8 @@ namespace TubesKPL
         public double Score { get; set; }
         public DateTime AttemptDate { get; set; }
         public string Grade => GetGradeByScore(Score);
+        public object AttemptID { get; internal set; }
+        public object ExamID { get; internal set; }
 
         public Attempt(int attemptId, string userName, string level, double score, DateTime attemptDate)
         {
