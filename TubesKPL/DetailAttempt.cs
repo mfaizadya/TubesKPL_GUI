@@ -22,7 +22,6 @@ namespace TubesKPL
 
         private void LoadAttemptDetail()
         {
-            lblAttemptID.Text = $"Attempt ID: {attempt.AttemptID}";
             lblUserName.Text = $"User: {attempt.UserName}";
             lblExamID.Text = $"Exam ID: {attempt.ExamID}";
             lblScore.Text = $"Score: {attempt.Score}";

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblAttemptID = new Label();
             lblUserName = new Label();
             lblExamID = new Label();
             lblScore = new Label();
@@ -44,15 +43,6 @@
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblAttemptID
-            // 
-            lblAttemptID.AutoSize = true;
-            lblAttemptID.Location = new Point(18, 35);
-            lblAttemptID.Name = "lblAttemptID";
-            lblAttemptID.Size = new Size(64, 15);
-            lblAttemptID.TabIndex = 0;
-            lblAttemptID.Text = "Attemp ID:";
             // 
             // lblUserName
             // 
@@ -177,7 +167,6 @@
             Controls.Add(lblScore);
             Controls.Add(lblExamID);
             Controls.Add(lblUserName);
-            Controls.Add(lblAttemptID);
             Name = "LoadDetail";
             Text = "DetailAttempt";
             groupBox1.ResumeLayout(false);
@@ -188,8 +177,6 @@
         }
 
         #endregion
-
-        private Label lblAttemptID;
         private Label lblUserName;
         private Label lblExamID;
         private Label lblScore;
