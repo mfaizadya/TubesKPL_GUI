@@ -116,7 +116,7 @@ namespace TubesKPL
         // Placeholder event jika label diklik
         private void Label1_Click(object sender, EventArgs e)
         {
-            // Tidak digunakan
+            
         }
 
         // Refresh isi listbox untuk menampilkan daftar level
@@ -129,9 +129,10 @@ namespace TubesKPL
                 listBoxLevel.Items.Add($"{level.IdLevel} - {level.NamaLevel}");
             }
 
-            // Nonaktifkan tombol edit dan hapus saat tidak ada yang dipilih
+            // Nonaktifkan tombol edit, hapus, dan kelola soal saat tidak ada yang dipilih
             buttonEditLevel.Enabled = false;
             buttonHapusLevel.Enabled = false;
+            buttonKelolaSoal.Enabled = false;
         }
 
         // Aktifkan tombol saat item dipilih

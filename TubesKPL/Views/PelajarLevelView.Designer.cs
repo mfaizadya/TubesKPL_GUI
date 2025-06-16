@@ -40,9 +40,10 @@
             // labelSoal
             // 
             labelSoal.AutoSize = true;
-            labelSoal.Location = new Point(101, 176);
+            labelSoal.Location = new Point(54, 82);
+            labelSoal.Margin = new Padding(2, 0, 2, 0);
             labelSoal.Name = "labelSoal";
-            labelSoal.Size = new Size(66, 32);
+            labelSoal.Size = new Size(32, 15);
             labelSoal.TabIndex = 0;
             labelSoal.Text = "Soal ";
             labelSoal.Click += labelSoal_Click;
@@ -50,33 +51,38 @@
             // labelLevel
             // 
             labelLevel.AutoSize = true;
-            labelLevel.Location = new Point(101, 98);
+            labelLevel.Location = new Point(54, 46);
+            labelLevel.Margin = new Padding(2, 0, 2, 0);
             labelLevel.Name = "labelLevel";
-            labelLevel.Size = new Size(76, 32);
+            labelLevel.Size = new Size(37, 15);
             labelLevel.TabIndex = 1;
             labelLevel.Text = "Level ";
             labelLevel.Click += label1_Click;
             // 
             // txtJawaban
             // 
-            txtJawaban.Location = new Point(101, 334);
+            txtJawaban.Location = new Point(54, 157);
+            txtJawaban.Margin = new Padding(2, 1, 2, 1);
             txtJawaban.Name = "txtJawaban";
-            txtJawaban.Size = new Size(491, 39);
+            txtJawaban.Size = new Size(266, 23);
             txtJawaban.TabIndex = 2;
             // 
             // listBoxOpsi
             // 
             listBoxOpsi.FormattingEnabled = true;
-            listBoxOpsi.Location = new Point(101, 413);
+            listBoxOpsi.ItemHeight = 15;
+            listBoxOpsi.Location = new Point(54, 194);
+            listBoxOpsi.Margin = new Padding(2, 1, 2, 1);
             listBoxOpsi.Name = "listBoxOpsi";
-            listBoxOpsi.Size = new Size(240, 164);
+            listBoxOpsi.Size = new Size(131, 79);
             listBoxOpsi.TabIndex = 3;
             // 
             // buttonNext
             // 
-            buttonNext.Location = new Point(767, 457);
+            buttonNext.Location = new Point(413, 214);
+            buttonNext.Margin = new Padding(2, 1, 2, 1);
             buttonNext.Name = "buttonNext";
-            buttonNext.Size = new Size(150, 46);
+            buttonNext.Size = new Size(81, 22);
             buttonNext.TabIndex = 4;
             buttonNext.Text = "Lanjut";
             buttonNext.UseVisualStyleBackColor = true;
@@ -84,9 +90,10 @@
             // 
             // buttonSelesai
             // 
-            buttonSelesai.Location = new Point(923, 457);
+            buttonSelesai.Location = new Point(497, 214);
+            buttonSelesai.Margin = new Padding(2, 1, 2, 1);
             buttonSelesai.Name = "buttonSelesai";
-            buttonSelesai.Size = new Size(150, 46);
+            buttonSelesai.Size = new Size(81, 22);
             buttonSelesai.TabIndex = 5;
             buttonSelesai.Text = "Selesai";
             buttonSelesai.UseVisualStyleBackColor = true;
@@ -94,9 +101,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(923, 572);
+            button1.Location = new Point(497, 268);
+            button1.Margin = new Padding(2, 1, 2, 1);
             button1.Name = "button1";
-            button1.Size = new Size(150, 46);
+            button1.Size = new Size(81, 22);
             button1.TabIndex = 6;
             button1.Text = "Tutup";
             button1.UseVisualStyleBackColor = true;
@@ -104,9 +112,9 @@
             // 
             // PelajarLevelView
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1178, 642);
+            ClientSize = new Size(634, 301);
             Controls.Add(button1);
             Controls.Add(buttonSelesai);
             Controls.Add(buttonNext);
@@ -114,8 +122,10 @@
             Controls.Add(txtJawaban);
             Controls.Add(labelLevel);
             Controls.Add(labelSoal);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "PelajarLevelView";
             Text = "Levels";
+            Load += PelajarLevelView_Load;
             ResumeLayout(false);
             PerformLayout();
         }
