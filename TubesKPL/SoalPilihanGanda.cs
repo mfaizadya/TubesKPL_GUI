@@ -11,6 +11,7 @@ namespace TubesKPL
         public string Pertanyaan { get; private set; }
         public List<string> Opsi { get; private set; }
         public string JawabanBenar { get; private set; }
+        public int Id { get; internal set; }
 
         public SoalPilihanGanda(string pertanyaan)
         {

@@ -1,87 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using SoalLibrary;
+
 
 namespace TubesKPL
 {
-    /// <summary>
-    /// Form untuk menambahkan soal pilihan ganda.
-    /// </summary>
+
     public partial class FormMenambahSoalPilgan : Form
     {
-        public SoalPilihanGanda SoalBaru { get; private set; }
-
         public FormMenambahSoalPilgan()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Event saat tombol Tambah Opsi diklik.
-        /// </summary>
+        public Soal SoalBaru { get; private set; }
+
+        private void txtSoal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtOption_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnAddOption_Click(object sender, EventArgs e)
         {
-            string option = txtOption.Text.Trim();
+            string opsi = txtOption.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(option))
+            if (string.IsNullOrWhiteSpace(opsi))
             {
                 ShowWarning("Opsi tidak boleh kosong!");
                 return;
             }
 
-            if (lstOptions.Items.Contains(option))
+            if (lstOptions.Items.Contains(opsi))
             {
-                ShowWarning("Opsi sudah ada dalam daftar.");
+                ShowWarning("Opsi sudah ada di dalam list.");
                 return;
             }
 
-            lstOptions.Items.Add(option);
+            lstOptions.Items.Add(opsi);
             txtOption.Clear();
             txtOption.Focus();
         }
 
-        /// <summary>
-        /// Event saat tombol Simpan diklik.
-        /// </summary>
+        private void lstOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtJawaban_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnSimpan_Click(object sender, EventArgs e)
         {
-            string pertanyaan = txtSoal.Text.Trim();
+            string soal = txtSoal.Text.Trim();
             string jawaban = txtJawaban.Text.Trim();
             List<string> opsiList = lstOptions.Items.Cast<string>().ToList();
 
-            if (!IsValidInput(pertanyaan, jawaban, opsiList)) return;
+            if (!IsValidInput(soal, jawaban, opsiList)) return;
 
-            try
+            SoalBaru = new Soal
             {
-                SoalPilihanGanda soal = new SoalPilihanGanda(pertanyaan);
+                Pertanyaan = soal,
+                Jawaban = jawaban,
+                Jenis = JenisSoal.PilihanGanda,
+                Opsi = opsiList
+            };
 
-                foreach (string opsi in opsiList)
-                {
-                    soal.TambahOpsi(opsi);
-                }
-
-                soal.SetJawabanBenar(jawaban);
-                SoalBaru = soal;
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                ShowError($"Terjadi kesalahan saat menyimpan: {ex.Message}");
-            }
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
-        /// <summary>
-        /// Validasi input sebelum menyimpan.
-        /// </summary>
-        private bool IsValidInput(string pertanyaan, string jawaban, List<string> opsiList)
+        private bool IsValidInput(string soal, string jawaban, List<string> opsiList)
         {
-            if (string.IsNullOrWhiteSpace(pertanyaan))
+            if (string.IsNullOrEmpty(soal))
             {
-                ShowWarning("Pertanyaan tidak boleh kosong.");
+                ShowWarning("Soal tidak boleh kosong.");
                 return false;
             }
 
@@ -91,7 +97,7 @@ namespace TubesKPL
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(jawaban))
+            if (string.IsNullOrEmpty(jawaban))
             {
                 ShowWarning("Jawaban tidak boleh kosong.");
                 return false;
@@ -106,28 +112,21 @@ namespace TubesKPL
             return true;
         }
 
-        /// <summary>
-        /// Tampilkan pesan peringatan.
-        /// </summary>
         private void ShowWarning(string message)
         {
             MessageBox.Show(message, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        /// <summary>
-        /// Tampilkan pesan error.
-        /// </summary>
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        /// <summary>
-        /// Event tombol kembali.
-        /// </summary>
-        private void Button_Kembali_Click(object sender, EventArgs e)
+        private void MenambahSoalPilgan_Load(object sender, EventArgs e)
         {
-            Close();
+            
         }
+
+        
     }
 }
