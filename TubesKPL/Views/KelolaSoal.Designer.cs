@@ -3,28 +3,29 @@
     partial class KelolaSoal
     {
         /// <summary>
-        /// Required designer variable.
+        /// Komponen yang dibutuhkan oleh desain form.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Membersihkan resource yang sedang digunakan.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true jika resource harus dibersihkan; false jika tidak.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Metode inisialisasi komponen UI yang diperlukan.
+        /// Jangan ubah langsung isi metode ini menggunakan code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -33,138 +34,112 @@
             btnEditSoalPG = new Button();
             btnEditSoalEssay = new Button();
             btnHapusSoal = new Button();
-            labelPilih = new Label();
-            labelLevel = new Label();
-            labelAngkaLevel = new Label();
-            listView1 = new ListView();
-            buttonBack = new Button();
+            lblPilihAksi = new Label();
+            listSoal = new ListView();
+            btnKembali = new Button();
             SuspendLayout();
             // 
             // btnTambahSoalPG
             // 
-            btnTambahSoalPG.Location = new Point(889, 155);
-            btnTambahSoalPG.Margin = new Padding(5, 5, 5, 5);
+            btnTambahSoalPG.Location = new Point(479, 73);
+            btnTambahSoalPG.Margin = new Padding(3, 2, 3, 2);
             btnTambahSoalPG.Name = "btnTambahSoalPG";
-            btnTambahSoalPG.Size = new Size(344, 46);
+            btnTambahSoalPG.Size = new Size(185, 22);
             btnTambahSoalPG.TabIndex = 0;
             btnTambahSoalPG.Text = "Tambah Soal PG";
             btnTambahSoalPG.UseVisualStyleBackColor = true;
-            btnTambahSoalPG.Click += btnTambahSoal_Click;
+            btnTambahSoalPG.Click += BtnTambahSoalPG_Click;
             // 
             // btnTambahSoalEssay
             // 
-            btnTambahSoalEssay.Location = new Point(889, 211);
-            btnTambahSoalEssay.Margin = new Padding(5, 5, 5, 5);
+            btnTambahSoalEssay.Location = new Point(479, 99);
+            btnTambahSoalEssay.Margin = new Padding(3, 2, 3, 2);
             btnTambahSoalEssay.Name = "btnTambahSoalEssay";
-            btnTambahSoalEssay.Size = new Size(344, 46);
+            btnTambahSoalEssay.Size = new Size(185, 22);
             btnTambahSoalEssay.TabIndex = 1;
             btnTambahSoalEssay.Text = "Tambah Soal Esai";
             btnTambahSoalEssay.UseVisualStyleBackColor = true;
-            btnTambahSoalEssay.Click += button2_Click;
+            btnTambahSoalEssay.Click += BtnTambahSoalEssay_Click;
             // 
             // btnEditSoalPG
             // 
-            btnEditSoalPG.Location = new Point(889, 354);
-            btnEditSoalPG.Margin = new Padding(5, 5, 5, 5);
+            btnEditSoalPG.Location = new Point(479, 166);
+            btnEditSoalPG.Margin = new Padding(3, 2, 3, 2);
             btnEditSoalPG.Name = "btnEditSoalPG";
-            btnEditSoalPG.Size = new Size(344, 46);
+            btnEditSoalPG.Size = new Size(185, 22);
             btnEditSoalPG.TabIndex = 2;
             btnEditSoalPG.Text = "Edit Soal PG";
             btnEditSoalPG.UseVisualStyleBackColor = true;
-            btnEditSoalPG.Click += btnEditSoalPG_Click;
+            btnEditSoalPG.Click += BtnEditSoalPG_Click;
             // 
             // btnEditSoalEssay
             // 
-            btnEditSoalEssay.Location = new Point(889, 298);
-            btnEditSoalEssay.Margin = new Padding(5, 5, 5, 5);
+            btnEditSoalEssay.Location = new Point(479, 140);
+            btnEditSoalEssay.Margin = new Padding(3, 2, 3, 2);
             btnEditSoalEssay.Name = "btnEditSoalEssay";
-            btnEditSoalEssay.Size = new Size(344, 46);
+            btnEditSoalEssay.Size = new Size(185, 22);
             btnEditSoalEssay.TabIndex = 3;
             btnEditSoalEssay.Text = "Edit Soal Esai";
             btnEditSoalEssay.UseVisualStyleBackColor = true;
-            btnEditSoalEssay.Click += btnEditSoalEssay_Click;
+            btnEditSoalEssay.Click += BtnEditSoalEssay_Click;
             // 
             // btnHapusSoal
             // 
-            btnHapusSoal.Location = new Point(889, 443);
-            btnHapusSoal.Margin = new Padding(5, 5, 5, 5);
+            btnHapusSoal.Location = new Point(479, 208);
+            btnHapusSoal.Margin = new Padding(3, 2, 3, 2);
             btnHapusSoal.Name = "btnHapusSoal";
-            btnHapusSoal.Size = new Size(344, 46);
+            btnHapusSoal.Size = new Size(185, 22);
             btnHapusSoal.TabIndex = 4;
             btnHapusSoal.Text = "Hapus Soal";
             btnHapusSoal.UseVisualStyleBackColor = true;
-            btnHapusSoal.Click += btnHapusSoal_Click;
+            btnHapusSoal.Click += BtnHapusSoal_Click;
             // 
-            // labelPilih
+            // lblPilihAksi
             // 
-            labelPilih.AutoSize = true;
-            labelPilih.Location = new Point(889, 72);
-            labelPilih.Margin = new Padding(5, 0, 5, 0);
-            labelPilih.Name = "labelPilih";
-            labelPilih.Size = new Size(252, 32);
-            labelPilih.TabIndex = 6;
-            labelPilih.Text = "Pilih untuk Kelola Soal";
+            lblPilihAksi.AutoSize = true;
+            lblPilihAksi.Location = new Point(479, 34);
+            lblPilihAksi.Name = "lblPilihAksi";
+            lblPilihAksi.Size = new Size(124, 15);
+            lblPilihAksi.TabIndex = 6;
+            lblPilihAksi.Text = "Pilih untuk Kelola Soal";
             // 
-            // labelLevel
+            // listSoal
             // 
-            labelLevel.AutoSize = true;
-            labelLevel.Location = new Point(889, 104);
-            labelLevel.Margin = new Padding(5, 0, 5, 0);
-            labelLevel.Name = "labelLevel";
-            labelLevel.Size = new Size(74, 32);
-            labelLevel.TabIndex = 7;
-            labelLevel.Text = "Level:";
-            labelLevel.Click += label1_Click;
+            listSoal.Location = new Point(16, 16);
+            listSoal.Margin = new Padding(3, 2, 3, 2);
+            listSoal.Name = "listSoal";
+            listSoal.Size = new Size(432, 314);
+            listSoal.TabIndex = 9;
+            listSoal.UseCompatibleStateImageBehavior = false;
+            listSoal.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
-            // labelAngkaLevel
+            // btnKembali
             // 
-            labelAngkaLevel.AutoSize = true;
-            labelAngkaLevel.Location = new Point(973, 104);
-            labelAngkaLevel.Margin = new Padding(5, 0, 5, 0);
-            labelAngkaLevel.Name = "labelAngkaLevel";
-            labelAngkaLevel.Size = new Size(65, 32);
-            labelAngkaLevel.TabIndex = 8;
-            labelAngkaLevel.Text = "label";
-            // 
-            // listView1
-            // 
-            listView1.Location = new Point(29, 34);
-            listView1.Margin = new Padding(5, 5, 5, 5);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(799, 665);
-            listView1.TabIndex = 9;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
-            // 
-            // buttonBack
-            // 
-            buttonBack.Location = new Point(1100, 654);
-            buttonBack.Margin = new Padding(5, 5, 5, 5);
-            buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(133, 46);
-            buttonBack.TabIndex = 10;
-            buttonBack.Text = "Kembali";
-            buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += button1_Click;
+            btnKembali.Location = new Point(592, 307);
+            btnKembali.Margin = new Padding(3, 2, 3, 2);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(72, 22);
+            btnKembali.TabIndex = 10;
+            btnKembali.Text = "Kembali";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += BtnKembali_Click;
             // 
             // KelolaSoal
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 720);
-            Controls.Add(buttonBack);
-            Controls.Add(listView1);
-            Controls.Add(labelAngkaLevel);
-            Controls.Add(labelLevel);
-            Controls.Add(labelPilih);
+            ClientSize = new Size(700, 338);
+            Controls.Add(btnKembali);
+            Controls.Add(listSoal);
+            Controls.Add(lblPilihAksi);
             Controls.Add(btnHapusSoal);
             Controls.Add(btnEditSoalEssay);
             Controls.Add(btnEditSoalPG);
             Controls.Add(btnTambahSoalEssay);
             Controls.Add(btnTambahSoalPG);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "KelolaSoal";
-            Text = "KelolaSoal";
+            Text = "Kelola Soal";
             Load += KelolaSoal_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -172,15 +147,14 @@
 
         #endregion
 
+        // Deklarasi komponen UI
         private Button btnTambahSoalPG;
         private Button btnTambahSoalEssay;
         private Button btnEditSoalPG;
         private Button btnEditSoalEssay;
         private Button btnHapusSoal;
-        private Label labelPilih;
-        private Label labelLevel;
-        private Label labelAngkaLevel;
-        private ListView listView1;
-        private Button buttonBack;
+        private Label lblPilihAksi;
+        private ListView listSoal;
+        private Button btnKembali;
     }
 }

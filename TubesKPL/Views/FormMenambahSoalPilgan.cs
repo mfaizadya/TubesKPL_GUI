@@ -111,7 +111,7 @@ namespace TubesKPL
 
             return true;
         }
-        
+
         private void ShowWarning(string message)
         {
             MessageBox.Show(message, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -125,6 +125,11 @@ namespace TubesKPL
         private void MenambahSoalPilgan_Load(object sender, EventArgs e)
         {
             ;
+        }
+
+        private void Button_Kembali_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
