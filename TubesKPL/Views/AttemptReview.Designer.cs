@@ -29,50 +29,49 @@
         private void InitializeComponent()
         {
             dataGridViewAttempt = new DataGridView();
-            buttonBack = new Button();
-            detail = new Button();
+            ButtonBack = new Button();
+            buttonDetail = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttempt).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewAttempt
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttempt.Location = new Point(10, 16);
+            dataGridViewAttempt.Location = new Point(11, 16);
             dataGridViewAttempt.Margin = new Padding(3, 2, 3, 2);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(536, 303);
+            dataGridViewAttempt.Size = new Size(660, 303);
             dataGridViewAttempt.TabIndex = 0;
             // 
-            // buttonBack
+            // ButtonBack
             // 
-            buttonBack.Location = new Point(574, 261);
-            buttonBack.Margin = new Padding(3, 2, 3, 2);
-            buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(103, 29);
-            buttonBack.TabIndex = 1;
-            buttonBack.Text = "Back";
-            buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += buttonBack_Click;
+            ButtonBack.Location = new Point(688, 285);
+            ButtonBack.Margin = new Padding(3, 2, 3, 2);
+            ButtonBack.Name = "ButtonBack";
+            ButtonBack.Size = new Size(103, 29);
+            ButtonBack.TabIndex = 1;
+            ButtonBack.Text = "Kembali";
+            ButtonBack.UseVisualStyleBackColor = true;
+            ButtonBack.Click += ButtonBack_Click;
             // 
-            // detail
+            // buttonDetail
             // 
-            detail.Location = new Point(574, 56);
-            detail.Name = "detail";
-            detail.Size = new Size(103, 27);
-            detail.TabIndex = 2;
-            detail.Text = "Detail";
-            detail.UseVisualStyleBackColor = true;
-            detail.Click += detail_Click;
+            buttonDetail.Location = new Point(688, 243);
+            buttonDetail.Name = "buttonDetail";
+            buttonDetail.Size = new Size(103, 23);
+            buttonDetail.TabIndex = 0;
+            buttonDetail.Text = "Detail";
+            buttonDetail.Click += ButtonDetail_Click;
             // 
             // AttemptReview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
-            Controls.Add(detail);
-            Controls.Add(buttonBack);
+            ClientSize = new Size(804, 359);
+            Controls.Add(ButtonBack);
             Controls.Add(dataGridViewAttempt);
+            Controls.Add(buttonDetail);
             Margin = new Padding(3, 2, 3, 2);
             Name = "AttemptReview";
             Text = "AttemptReview";
@@ -84,7 +83,7 @@
         #endregion
 
         private DataGridView dataGridViewAttempt;
-        private Button buttonBack;
-        private Button detail;
+        private Button ButtonBack;
+        private Button buttonDetail;
     }
 }

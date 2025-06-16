@@ -78,7 +78,7 @@
             buttonNext.Name = "buttonNext";
             buttonNext.Size = new Size(150, 46);
             buttonNext.TabIndex = 4;
-            buttonNext.Text = "Next";
+            buttonNext.Text = "Lanjut";
             buttonNext.UseVisualStyleBackColor = true;
             buttonNext.Click += button1_Click;
             // 
@@ -88,7 +88,7 @@
             buttonSelesai.Name = "buttonSelesai";
             buttonSelesai.Size = new Size(150, 46);
             buttonSelesai.TabIndex = 5;
-            buttonSelesai.Text = "Finish";
+            buttonSelesai.Text = "Selesai";
             buttonSelesai.UseVisualStyleBackColor = true;
             buttonSelesai.Click += button1_Click_1;
             // 
@@ -98,7 +98,7 @@
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 6;
-            button1.Text = "Close/Quit";
+            button1.Text = "Tutup";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_2;
             // 

@@ -33,7 +33,6 @@
             button3 = new Button();
             button4 = new Button();
             labelNama = new Label();
-            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -48,9 +47,9 @@
             // 
             // button2
             // 
-            button2.Location = new Point(304, 82);
+            button2.Location = new Point(277, 80);
             button2.Name = "button2";
-            button2.Size = new Size(183, 23);
+            button2.Size = new Size(216, 23);
             button2.TabIndex = 2;
             button2.Text = "Mengelola Level dan soal";
             button2.UseVisualStyleBackColor = true;
@@ -58,11 +57,11 @@
             // 
             // button3
             // 
-            button3.Location = new Point(330, 163);
+            button3.Location = new Point(277, 123);
             button3.Name = "button3";
-            button3.Size = new Size(134, 23);
+            button3.Size = new Size(216, 23);
             button3.TabIndex = 3;
-            button3.Text = "Review Attempt";
+            button3.Text = "Melihat Hasil Pelajar dan Menilai";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -72,7 +71,7 @@
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 4;
-            button4.Text = "Log Out";
+            button4.Text = "Keluar";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -85,22 +84,11 @@
             labelNama.TabIndex = 5;
             labelNama.Click += label2_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(342, 123);
-            button1.Name = "button1";
-            button1.Size = new Size(103, 23);
-            button1.TabIndex = 6;
-            button1.Text = "Menilai Esai";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // MenuAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
             Controls.Add(labelNama);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -120,6 +108,5 @@
         private Button button3;
         private Button button4;
         private Label labelNama;
-        private Button button1;
     }
 }

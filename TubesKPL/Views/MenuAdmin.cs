@@ -60,12 +60,7 @@ namespace TubesKPL
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            NilaiEsai formNilaiEsai = new NilaiEsai(loginData);
-            formNilaiEsai.Show();
-            this.Close();
-        }
+       
     }
 
 

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TubesKPL.Models;
 
 namespace TubesKPL
 {
@@ -14,16 +15,23 @@ namespace TubesKPL
         public string Level { get; set; }
         public double Score { get; set; }
         public DateTime AttemptDate { get; set; }
+        public List<JawabanPengguna> ListJawaban { get; set; }
         public string Grade => GetGradeByScore(Score);
         public object ExamID { get; internal set; }
 
-        public Attempt(int attemptId, string userName, string level, double score, DateTime attemptDate)
+        public Attempt(int id, string userName, string level, double score, DateTime attemptDate, List<JawabanPengguna> listJawabanPengguna)
         {
-            AttemptId = attemptId;
+            AttemptId = id;
             UserName = userName;
             Level = level;
             Score = score;
             AttemptDate = attemptDate;
+            ListJawaban = listJawabanPengguna;
+        }
+
+        public Attempt()
+        {
+
         }
 
         public static string GetGradeByScore(double score)

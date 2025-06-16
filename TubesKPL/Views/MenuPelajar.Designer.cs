@@ -52,18 +52,18 @@
             buttonReviewAttempt.Name = "buttonReviewAttempt";
             buttonReviewAttempt.Size = new Size(212, 50);
             buttonReviewAttempt.TabIndex = 4;
-            buttonReviewAttempt.Text = "Review Attempt";
+            buttonReviewAttempt.Text = "Lihat Hasil";
             buttonReviewAttempt.UseVisualStyleBackColor = true;
             buttonReviewAttempt.Click += buttonReviewAttempt_Click;
             // 
             // buttonGoToQuestions
             // 
-            buttonGoToQuestions.Location = new Point(328, 194);
+            buttonGoToQuestions.Location = new Point(315, 198);
             buttonGoToQuestions.Margin = new Padding(5, 6, 5, 6);
             buttonGoToQuestions.Name = "buttonGoToQuestions";
             buttonGoToQuestions.Size = new Size(200, 50);
             buttonGoToQuestions.TabIndex = 5;
-            buttonGoToQuestions.Text = "Go To Questions";
+            buttonGoToQuestions.Text = "Kerjakan Soal";
             buttonGoToQuestions.UseVisualStyleBackColor = true;
             buttonGoToQuestions.Click += button1_Click;
             // 
@@ -73,7 +73,7 @@
             buttonLogOut.Name = "buttonLogOut";
             buttonLogOut.Size = new Size(212, 46);
             buttonLogOut.TabIndex = 6;
-            buttonLogOut.Text = "Log Out";
+            buttonLogOut.Text = "Keluar";
             buttonLogOut.UseVisualStyleBackColor = true;
             buttonLogOut.Click += button1_Click_1;
             // 

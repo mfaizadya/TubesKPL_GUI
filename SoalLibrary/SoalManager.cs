@@ -1,13 +1,15 @@
 ﻿using System.Text.Json;
 namespace SoalLibrary
 {
+    // Enumerasi untuk mendefinisikan jenis soal
     public enum JenisSoal { Esai, PilihanGanda }
 
-
+    // Static class untuk manajemen soal (CRUD)
     public static class SoalManager
     {
-        private static string filePath = "data_level.json";
+        public static string filePath = "data_level.json";
 
+        // Memuat data soal dari file JSON
         public static List<Soal> Load()
         {
             try
@@ -22,6 +24,7 @@ namespace SoalLibrary
             }
         }
 
+        // Menyimpan list soal ke file JSON
         public static void Save(List<Soal> soalList)
         {
             try
@@ -35,21 +38,28 @@ namespace SoalLibrary
             }
         }
 
+        // Menambah soal baru ke dalam file
         public static void Add(Soal soal)
         {
             if (soal == null) return;
 
             var data = Load();
+
+            // Menetapkan ID secara otomatis
             soal.Id = data.Count > 0 ? data.Max(s => s.Id) + 1 : 1;
+
             data.Add(soal);
             Save(data);
         }
 
+        // Mengedit soal yang sudah ada berdasarkan ID
         public static void Edit(Soal soalBaru)
         {
             if (soalBaru == null) return;
+
             var data = Load();
             var index = data.FindIndex(s => s.Id == soalBaru.Id);
+
             if (index != -1)
             {
                 data[index] = soalBaru;
@@ -61,10 +71,12 @@ namespace SoalLibrary
             }
         }
 
+        // Menghapus soal berdasarkan ID
         public static void Delete(int id)
         {
             var data = Load();
             var soal = data.FirstOrDefault(s => s.Id == id);
+
             if (soal != null)
             {
                 data.Remove(soal);
