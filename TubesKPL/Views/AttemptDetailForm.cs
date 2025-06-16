@@ -15,6 +15,7 @@ namespace TubesKPL.Views
     {
         private Attempt attempt;
         private List<Level> levels;
+        private LoginResponse loginData;
 
         // Konstruktor default
         public AttemptDetailForm()
@@ -24,10 +25,11 @@ namespace TubesKPL.Views
 
         // Konstruktor dengan parameter Attempt
         // Digunakan untuk menampilkan data attempt yang dipilih
-        public AttemptDetailForm(Attempt attempt)
+        public AttemptDetailForm(Attempt attempt, LoginResponse loginData)
         {
             InitializeComponent();
             this.attempt = attempt;
+            this.loginData = loginData;
             LoadLevelData();     // Muat data level dari file
             TampilkanDetail();   // Tampilkan detail jawaban di DataGridView
         }
