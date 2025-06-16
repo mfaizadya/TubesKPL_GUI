@@ -179,5 +179,10 @@ namespace TubesKPL
         private void labelSoal_Click(object sender, EventArgs e) { }
 
         private void label1_Click(object sender, EventArgs e) { }
+
+        private void PelajarLevelView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,31 +1,103 @@
-{
-    "IdLevel": 1,
-    "NamaLevel": "Level 1",
-    "SoalList": [
-        {
-            "Id": 1,
-            "Jenis": 0,
-            "Pertanyaan": "Apa itu OOP?",
-            "Jawaban": "OOP adalah pemrograman berorientasi objek",
-            "Opsi": null
-        },
-        {
-            "Id": 2,
-            "Jenis": 1,
-            "Pertanyaan": "Apa ibu kota Indonesia?",
-            "Jawaban": "Jakarta",
-            "Opsi": [
-                "Bandung",
-                "Jakarta",
-                "Surabaya",
-                "Medan"
-            ]
-        }
-    ]
-},
-  {
-    "IdLevel": 2,
-    "NamaLevel": "Level 2",
-    "SoalList": []
-  }
+[
+    {
+        "IdLevel": 1,
+        "NamaLevel": "Level 1",
+        "SoalList": [
+            {
+                "Id": 1,
+                "Jenis": 0,
+                "Pertanyaan": "Apa hasil dari 2 \u002B 2?",
+                "Jawaban": "4",
+                "Opsi": null
+            },
+            {
+                "Id": 2,
+                "Jenis": 1,
+                "Pertanyaan": "Manakah bilangan genap?",
+                "Jawaban": "6",
+                "Opsi": [
+                    "3",
+                    "5",
+                    "6",
+                    "9"
+                ]
+            },
+            {
+                "Id": 3,
+                "Jenis": 0,
+                "Pertanyaan": "Berapakah akar dari 9?",
+                "Jawaban": "3",
+                "Opsi": null
+            }
+        ]
+    },
+    {
+        "IdLevel": 2,
+        "NamaLevel": "Level 2",
+        "SoalList": [
+            {
+                "Id": 4,
+                "Jenis": 0,
+                "Pertanyaan": "Bilangan prima setelah 5 adalah?",
+                "Jawaban": "7",
+                "Opsi": null
+            },
+            {
+                "Id": 5,
+                "Jenis": 1,
+                "Pertanyaan": "Manakah hasil dari 3 x 4?",
+                "Jawaban": "12",
+                "Opsi": [
+                    "7",
+                    "12",
+                    "10",
+                    "15"
+                ]
+            },
+            {
+                "Id": 6,
+                "Jenis": 0,
+                "Pertanyaan": "Berapakah nilai log(100) basis 10?",
+                "Jawaban": "2",
+                "Opsi": null
+            }
+        ]
+    },
+    {
+        "IdLevel": 3,
+        "NamaLevel": "Level 3",
+        "SoalList": [
+            {
+                "Id": 7,
+                "Jenis": 1,
+                "Pertanyaan": "Jika x = 2 dan y = 3, maka x^y adalah?",
+                "Jawaban": "8",
+                "Opsi": [
+                    "6",
+                    "9",
+                    "8",
+                    "7"
+                ]
+            },
+            {
+                "Id": 8,
+                "Jenis": 0,
+                "Pertanyaan": "Fungsi kebalikan dari pangkat dua disebut?",
+                "Jawaban": "akar",
+                "Opsi": null
+            },
+            {
+                "Id": 9,
+                "Jenis": 1,
+                "Pertanyaan": "Berapa banyak sisi pada segienam?",
+                "Jawaban": "6",
+                "Opsi": [
+                    "5",
+                    "6",
+                    "7",
+                    "8"
+                ]
+            }
+        ]
+    }
 ]
