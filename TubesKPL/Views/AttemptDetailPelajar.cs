@@ -109,10 +109,6 @@ namespace TubesKPL.Views
         {
             try
             {
-                // Navigasi ke form AttemptReview untuk role pelajar
-                AttemptReview formAttemptReview = new AttemptReview("pelajar", loginData);
-                formAttemptReview.Show();
-
                 this.Close();
             }
             catch (Exception ex)
