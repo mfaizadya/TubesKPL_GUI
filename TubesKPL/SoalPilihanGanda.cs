@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TubesKPL
 {
+    /// <summary>
+    /// Representasi model Soal Pilihan Ganda.
+    /// </summary>
     public class SoalPilihanGanda
     {
-        public string Pertanyaan { get; set; }
-        public List<string> Opsi { get; set; }
-        public string JawabanBenar { get; set; }
+        public string Pertanyaan { get; private set; }
+        public List<string> Opsi { get; private set; }
+        public string JawabanBenar { get; private set; }
 
         public SoalPilihanGanda(string pertanyaan)
         {
