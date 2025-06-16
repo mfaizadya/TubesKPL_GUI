@@ -1,93 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿    using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.Linq;
+    using BCrypt.Net;
 
-namespace AuthAPI.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PelajarController : ControllerBase
+    namespace AuthAPI.Controllers
     {
-        // List statis untuk menyimpan data pelajar sementara (mock database)
-        private static List<Pelajar> daftarPelajar = new List<Pelajar>
+        [Route("api/[controller]")]
+        [ApiController]
+        public class PelajarController : ControllerBase
         {
-            new Pelajar("Pelajar1", "pela1", "pass"),
-            new Pelajar("Pelajar2", "pela2", "pass2")
-        };
-
-        /// <summary>
-        /// Mengambil semua data pelajar yang terdaftar.
-        /// </summary>
-        [HttpGet]
-        public ActionResult<IEnumerable<Pelajar>> GetAllPelajar()
-        {
-            return Ok(daftarPelajar);
-        }
-
-        /// <summary>
-        /// Endpoint untuk registrasi pelajar baru.
-        /// </summary>
-        [HttpPost("register")]
-        public ActionResult Register([FromBody] Pelajar newPelajar)
-        {
-            // Validasi input tidak boleh kosong
-            if (newPelajar == null ||
-                string.IsNullOrWhiteSpace(newPelajar.Nama) ||
-                string.IsNullOrWhiteSpace(newPelajar.Username) ||
-                string.IsNullOrWhiteSpace(newPelajar.Password))
+            // Mock database
+            private static readonly List<Pelajar> pelajarList = new()
             {
-                return BadRequest("Semua data (Nama, Username, dan Password) harus diisi.");
-            }
-
-            // Cek apakah username sudah digunakan
-            var existing = daftarPelajar.FirstOrDefault(p => p.Username == newPelajar.Username);
-            if (existing != null)
-            {
-                return Conflict("Username sudah digunakan.");
-            }
-
-            // Tambahkan ke daftar pelajar
-            daftarPelajar.Add(newPelajar);
-
-            // Jangan kembalikan password (praktik aman)
-            var response = new
-            {
-                newPelajar.Nama,
-                newPelajar.Username
+                new Pelajar("Pelajar1", "pela1", BCrypt.Net.BCrypt.HashPassword("pass")),
+                new Pelajar("Pelajar2", "pela2", BCrypt.Net.BCrypt.HashPassword("pass2"))
             };
 
-            return CreatedAtAction(nameof(GetAllPelajar), new { username = newPelajar.Username }, response);
-        }
-
-        /// <summary>
-        /// Endpoint untuk login pelajar.
-        /// </summary>
-        [HttpPost("login")]
-        public ActionResult Login([FromBody] LoginReq req)
-        {
-            // Validasi input login
-            if (req == null ||
-                string.IsNullOrWhiteSpace(req.Username) ||
-                string.IsNullOrWhiteSpace(req.Password))
+            /// <summary>
+            /// Mengambil semua data pelajar (hanya nama dan username).
+            /// </summary>
+            [HttpGet]
+            public ActionResult<IEnumerable<object>> GetAllPelajar()
             {
-                return BadRequest("Username dan password harus diisi.");
+                return Ok(pelajarList.Select(p => new { p.Nama, p.Username, p.Password}));
             }
 
-            // Autentikasi sederhana (tanpa hash)
-            var pelajar = daftarPelajar.FirstOrDefault(p =>
-                p.Username == req.Username && p.Password == req.Password);
-
-            if (pelajar != null)
+            /// <summary>
+            /// Endpoint untuk registrasi pelajar baru.
+            /// </summary>
+            [HttpPost("register")]
+            public ActionResult Register([FromBody] Pelajar newPelajar)
             {
-                // Jangan kembalikan password
-                var response = new
+                if (newPelajar == null ||
+                    string.IsNullOrWhiteSpace(newPelajar.Nama) ||
+                    string.IsNullOrWhiteSpace(newPelajar.Username) ||
+                    string.IsNullOrWhiteSpace(newPelajar.Password))
                 {
-                    pelajar.Nama,
-                    pelajar.Username
-                };
+                    return BadRequest("Semua data (Nama, Username, dan Password) harus diisi.");
+                }
 
+                if (pelajarList.Any(p => p.Username == newPelajar.Username))
+                {
+                    return Conflict("Username sudah digunakan.");
+                }
+
+                newPelajar.Password = BCrypt.Net.BCrypt.HashPassword(newPelajar.Password);
+                pelajarList.Add(newPelajar);
+
+                var response = new { newPelajar.Nama, newPelajar.Username };
+                return CreatedAtAction(nameof(GetAllPelajar), new { newPelajar.Username }, response);
+            }
+
+            /// <summary>
+            /// Endpoint untuk login pelajar.
+            /// </summary>
+            [HttpPost("login")]
+            public ActionResult Login([FromBody] LoginReq loginRequest)
+            {
+                if (loginRequest == null ||
+                    string.IsNullOrWhiteSpace(loginRequest.Username) ||
+                    string.IsNullOrWhiteSpace(loginRequest.Password))
+                {
+                    return BadRequest("Username dan password harus diisi.");
+                }
+
+                var matchedPelajar = pelajarList.FirstOrDefault(p =>
+                    p.Username == loginRequest.Username &&
+                    BCrypt.Net.BCrypt.Verify(loginRequest.Password, p.Password));
+
+                if (matchedPelajar == null)
+                {
+                    return Unauthorized("Username atau password salah.");
+                }
+
+                var response = new { matchedPelajar.Nama, matchedPelajar.Username };
                 return Ok(response);
             }
-
-            return Unauthorized("Username atau password salah.");
         }
     }
-}
