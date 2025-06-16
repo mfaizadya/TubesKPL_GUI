@@ -12,10 +12,16 @@ namespace TubesKPL
 
         public int HitungSkor(string jawabanMahasiswa)
         {
-            if (string.IsNullOrWhiteSpace(jawabanMahasiswa)) return 0;
-            if (jawabanMahasiswa.Trim().ToLower() == JawabanBenar.Trim().ToLower())
+            if (string.IsNullOrWhiteSpace(jawabanMahasiswa))
+                return 0;
+
+            string jawabanBenarNormalized = JawabanBenar?.Trim().ToLowerInvariant() ?? string.Empty;
+            string jawabanMahasiswaNormalized = jawabanMahasiswa.Trim().ToLowerInvariant();
+
+            if (jawabanMahasiswaNormalized == jawabanBenarNormalized)
                 return 100;
-            return 50; 
+
+            return 50;
         }
     }
 }

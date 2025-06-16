@@ -35,16 +35,22 @@ namespace TubesKPL
         private void btnAddOption_Click(object sender, EventArgs e)
         {
             string opsi = txtOption.Text.Trim();
-            if (!string.IsNullOrEmpty(opsi))
+
+            if (string.IsNullOrWhiteSpace(opsi))
             {
-                lstOptions.Items.Add(opsi);
-                txtOption.Clear();
-                txtOption.Focus();
+                ShowWarning("Opsi tidak boleh kosong!");
+                return;
             }
-            else
+
+            if (lstOptions.Items.Contains(opsi))
             {
-                MessageBox.Show("Opsi tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowWarning("Opsi sudah ada di dalam list.");
+                return;
             }
+
+            lstOptions.Items.Add(opsi);
+            txtOption.Clear();
+            txtOption.Focus();
         }
 
         private void lstOptions_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,33 +69,62 @@ namespace TubesKPL
             string jawaban = txtJawaban.Text.Trim();
             List<string> opsiList = lstOptions.Items.Cast<string>().ToList();
 
-            if (string.IsNullOrEmpty(soal) || opsiList.Count < 2 || string.IsNullOrEmpty(jawaban))
+            if (!IsValidInput(soal, jawaban, opsiList)) return;
+
+            SoalBaru = new Soal
             {
-                MessageBox.Show("Pastikan soal, minimal 2 opsi, dan jawaban diisi!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Pertanyaan = soal,
+                Jawaban = jawaban,
+                Jenis = JenisSoal.PilihanGanda,
+                Opsi = opsiList
+            };
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private bool IsValidInput(string soal, string jawaban, List<string> opsiList)
+        {
+            if (string.IsNullOrEmpty(soal))
+            {
+                ShowWarning("Soal tidak boleh kosong.");
+                return false;
+            }
+
+            if (opsiList.Count < 2)
+            {
+                ShowWarning("Minimal harus ada 2 opsi.");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(jawaban))
+            {
+                ShowWarning("Jawaban tidak boleh kosong.");
+                return false;
             }
 
             if (!opsiList.Contains(jawaban))
             {
-                MessageBox.Show("Jawaban harus merupakan salah satu dari opsi!", "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                ShowError("Jawaban harus merupakan salah satu dari opsi.");
+                return false;
             }
 
-            SoalBaru = new SoalLibrary.Soal
-            {
-                Pertanyaan = soal,
-                Jawaban = jawaban,
-                Jenis = SoalLibrary.JenisSoal.PilihanGanda,
-                Opsi = opsiList
-            };
+            return true;
+        }
+        
+        private void ShowWarning(string message)
+        {
+            MessageBox.Show(message, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+        private void ShowError(string message)
+        {
+            MessageBox.Show(message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void MenambahSoalPilgan_Load(object sender, EventArgs e)
         {
-
+            ;
         }
     }
 }

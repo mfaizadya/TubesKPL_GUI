@@ -30,38 +30,49 @@
         {
             dataGridViewAttempt = new DataGridView();
             ButtonBack = new Button();
+            buttonDetail = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAttempt).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewAttempt
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttempt.Location = new Point(20, 34);
-            dataGridViewAttempt.Margin = new Padding(5);
+            dataGridViewAttempt.Location = new Point(11, 16);
+            dataGridViewAttempt.Margin = new Padding(3, 2, 3, 2);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(1226, 646);
+            dataGridViewAttempt.Size = new Size(660, 303);
             dataGridViewAttempt.TabIndex = 0;
             // 
             // ButtonBack
             // 
-            ButtonBack.Location = new Point(1278, 607);
-            ButtonBack.Margin = new Padding(5);
+            ButtonBack.Location = new Point(688, 285);
+            ButtonBack.Margin = new Padding(3, 2, 3, 2);
             ButtonBack.Name = "ButtonBack";
-            ButtonBack.Size = new Size(192, 62);
+            ButtonBack.Size = new Size(103, 29);
             ButtonBack.TabIndex = 1;
             ButtonBack.Text = "Kembali";
             ButtonBack.UseVisualStyleBackColor = true;
             ButtonBack.Click += ButtonBack_Click;
             // 
+            // buttonDetail
+            // 
+            buttonDetail.Location = new Point(688, 243);
+            buttonDetail.Name = "buttonDetail";
+            buttonDetail.Size = new Size(103, 23);
+            buttonDetail.TabIndex = 0;
+            buttonDetail.Text = "Detail";
+            buttonDetail.Click += ButtonDetail_Click;
+            // 
             // AttemptReview
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1494, 720);
+            ClientSize = new Size(804, 359);
             Controls.Add(ButtonBack);
             Controls.Add(dataGridViewAttempt);
-            Margin = new Padding(5);
+            Controls.Add(buttonDetail);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AttemptReview";
             Text = "AttemptReview";
             Load += AttemptReview_Load;
@@ -73,5 +84,6 @@
 
         private DataGridView dataGridViewAttempt;
         private Button ButtonBack;
+        private Button buttonDetail;
     }
 }

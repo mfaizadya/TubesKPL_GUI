@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AuthAPI;
 using System.Text;
 using System.Text.Json;
+using TubesKPL.Views;
 
 namespace TubesKPL
 {
@@ -105,6 +106,42 @@ namespace TubesKPL
                 MenuPelajar formMenuPelajar = new MenuPelajar(loginData);
                 formMenuPelajar.Show();
                 this.Close();
+            }
+        }
+
+        private void ButtonDetail_Click(object sender, EventArgs e)
+        {
+            
+            if (dataGridViewAttempt.SelectedRows.Count > 0)
+            {
+                Attempt selectedAttempt = dataGridViewAttempt.SelectedRows[0].DataBoundItem as Attempt;
+
+                if (selectedAttempt != null)
+                {
+                    if (loginAs == "admin")
+                    {
+                        AttemptDetailForm formDetail = new AttemptDetailForm(selectedAttempt, loginData);
+                        formDetail.ShowDialog();
+
+                        // refresh setelah kembali (bila ada perubahan)
+                        LoadAttempt(loginAs, loginData.username);
+                        TampilkanAttempt();
+                    }
+                    else
+                    {
+                        AttemptDetailPelajar formDetail = new AttemptDetailPelajar(selectedAttempt, loginData);
+                        formDetail.ShowDialog();
+
+                        // refresh setelah kembali (bila ada perubahan)
+                        LoadAttempt(loginAs, loginData.username);
+                        TampilkanAttempt();
+                    }
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pilih salah satu data attempt!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

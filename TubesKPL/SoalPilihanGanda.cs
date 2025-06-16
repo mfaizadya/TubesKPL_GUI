@@ -14,17 +14,29 @@ namespace TubesKPL
 
         public SoalPilihanGanda(string pertanyaan)
         {
-            Pertanyaan = pertanyaan;
+            if (string.IsNullOrWhiteSpace(pertanyaan))
+                throw new ArgumentException("Pertanyaan tidak boleh kosong.", nameof(pertanyaan));
+
+            Pertanyaan = pertanyaan.Trim();
             Opsi = new List<string>();
         }
 
         public void TambahOpsi(string opsi)
         {
-            Opsi.Add(opsi);
+            if (string.IsNullOrWhiteSpace(opsi))
+                throw new ArgumentException("Opsi tidak boleh kosong.", nameof(opsi));
+
+            Opsi.Add(opsi.Trim());
         }
 
         public void SetJawabanBenar(string jawaban)
         {
+            if (string.IsNullOrWhiteSpace(jawaban))
+                throw new ArgumentException("Jawaban tidak boleh kosong.", nameof(jawaban));
+
+            if (!Opsi.Contains(jawaban))
+                throw new InvalidOperationException("Jawaban harus merupakan salah satu opsi yang sudah dimasukkan.");
+
             JawabanBenar = jawaban;
         }
     }
