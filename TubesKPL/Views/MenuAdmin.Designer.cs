@@ -8,72 +8,78 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Bersihkan resource yang digunakan.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true jika managed resource harus dibersihkan; false sebaliknya.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Jangan ubah isi method ini menggunakan editor code biasa.
+        /// Gunakan Windows Forms Designer.
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            labelJudul = new Label();
+            buttonKelolaLevel = new Button();
+            buttonLihatHasil = new Button();
+            buttonKeluar = new Button();
             labelNama = new Label();
+
             SuspendLayout();
+
             // 
-            // label1
+            // labelJudul
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(353, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(77, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Menu Admin";
-            label1.Click += label1_Click;
+            labelJudul.AutoSize = true;
+            labelJudul.Location = new Point(353, 40);
+            labelJudul.Name = "labelJudul";
+            labelJudul.Size = new Size(77, 15);
+            labelJudul.TabIndex = 0;
+            labelJudul.Text = "Menu Admin";
+
             // 
-            // button2
+            // buttonKelolaLevel
             // 
-            button2.Location = new Point(277, 80);
-            button2.Name = "button2";
-            button2.Size = new Size(216, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Mengelola Level dan soal";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonKelolaLevel.Location = new Point(277, 80);
+            buttonKelolaLevel.Name = "buttonKelolaLevel";
+            buttonKelolaLevel.Size = new Size(216, 23);
+            buttonKelolaLevel.TabIndex = 2;
+            buttonKelolaLevel.Text = "Mengelola Level dan Soal";
+            buttonKelolaLevel.UseVisualStyleBackColor = true;
+            buttonKelolaLevel.Click += ButtonKelolaLevel_Click;
+
             // 
-            // button3
+            // buttonLihatHasil
             // 
-            button3.Location = new Point(277, 123);
-            button3.Name = "button3";
-            button3.Size = new Size(216, 23);
-            button3.TabIndex = 3;
-            button3.Text = "Melihat Hasil Pelajar dan Menilai";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            buttonLihatHasil.Location = new Point(277, 123);
+            buttonLihatHasil.Name = "buttonLihatHasil";
+            buttonLihatHasil.Size = new Size(216, 23);
+            buttonLihatHasil.TabIndex = 3;
+            buttonLihatHasil.Text = "Melihat Hasil Pelajar dan Menilai";
+            buttonLihatHasil.UseVisualStyleBackColor = true;
+            buttonLihatHasil.Click += ButtonReviewAttempt_Click;
+
             // 
-            // button4
+            // buttonKeluar
             // 
-            button4.Location = new Point(586, 32);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 4;
-            button4.Text = "Keluar";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            buttonKeluar.Location = new Point(586, 32);
+            buttonKeluar.Name = "buttonKeluar";
+            buttonKeluar.Size = new Size(75, 23);
+            buttonKeluar.TabIndex = 4;
+            buttonKeluar.Text = "Keluar";
+            buttonKeluar.UseVisualStyleBackColor = true;
+            buttonKeluar.Click += ButtonLogout_Click;
+
             // 
             // labelNama
             // 
@@ -82,7 +88,7 @@
             labelNama.Name = "labelNama";
             labelNama.Size = new Size(0, 15);
             labelNama.TabIndex = 5;
-            labelNama.Click += label2_Click;
+
             // 
             // MenuAdmin
             // 
@@ -90,12 +96,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(labelNama);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(label1);
+            Controls.Add(buttonKeluar);
+            Controls.Add(buttonLihatHasil);
+            Controls.Add(buttonKelolaLevel);
+            Controls.Add(labelJudul);
             Name = "MenuAdmin";
-            Text = "MenuAdmin";
+            Text = "Menu Admin";
             Load += MenuAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -103,10 +109,10 @@
 
         #endregion
 
-        private Label label1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Label labelJudul;
+        private Button buttonKelolaLevel;
+        private Button buttonLihatHasil;
+        private Button buttonKeluar;
         private Label labelNama;
     }
 }

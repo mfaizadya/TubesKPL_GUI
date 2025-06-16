@@ -1,6 +1,6 @@
 ﻿namespace TubesKPL
 {
-    partial class Kelola_Level_dan_Soal
+    partial class KelolaLevelDanSoal
     {
         /// <summary>
         /// Required designer variable.
@@ -8,9 +8,9 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Bersihkan resource yang sedang digunakan.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true jika resource dikelola perlu dibersihkan; false jika tidak.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,71 +23,77 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Metode ini diperlukan untuk mendukung designer.
+        /// Jangan modifikasi isinya dengan code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            Tambahlv = new Button();
-            Editlv = new Button();
-            Hapuslv = new Button();
-            Kelolalv = new Button();
+            labelKelolaLevel = new Label();
+            buttonTambahLevel = new Button();
+            buttonEditLevel = new Button();
+            buttonHapusLevel = new Button();
+            buttonKelolaSoal = new Button();
             listBoxLevel = new ListBox();
             buttonBack = new Button();
             SuspendLayout();
+
             // 
-            // label1
+            // labelKelolaLevel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(345, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(69, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Kelola Level";
-            label1.Click += label1_Click;
+            labelKelolaLevel.AutoSize = true;
+            labelKelolaLevel.Location = new Point(345, 19);
+            labelKelolaLevel.Name = "labelKelolaLevel";
+            labelKelolaLevel.Size = new Size(69, 15);
+            labelKelolaLevel.TabIndex = 0;
+            labelKelolaLevel.Text = "Kelola Level";
+            
+
             // 
-            // Tambahlv
+            // buttonTambahLevel
             // 
-            Tambahlv.Location = new Point(594, 87);
-            Tambahlv.Name = "Tambahlv";
-            Tambahlv.Size = new Size(126, 23);
-            Tambahlv.TabIndex = 1;
-            Tambahlv.Text = "Tambah Level";
-            Tambahlv.UseVisualStyleBackColor = true;
-            Tambahlv.Click += Tambahlv_Click;
+            buttonTambahLevel.Location = new Point(594, 87);
+            buttonTambahLevel.Name = "buttonTambahLevel";
+            buttonTambahLevel.Size = new Size(126, 23);
+            buttonTambahLevel.TabIndex = 1;
+            buttonTambahLevel.Text = "Tambah Level";
+            buttonTambahLevel.UseVisualStyleBackColor = true;
+            buttonTambahLevel.Click += ButtonTambahLevel_Click;
+
             // 
-            // Editlv
+            // buttonEditLevel
             // 
-            Editlv.Enabled = false;
-            Editlv.Location = new Point(594, 116);
-            Editlv.Name = "Editlv";
-            Editlv.Size = new Size(126, 23);
-            Editlv.TabIndex = 2;
-            Editlv.Text = "Edit Nama Level";
-            Editlv.UseVisualStyleBackColor = true;
-            Editlv.Click += Editlv_Click;
+            buttonEditLevel.Enabled = false;
+            buttonEditLevel.Location = new Point(594, 116);
+            buttonEditLevel.Name = "buttonEditLevel";
+            buttonEditLevel.Size = new Size(126, 23);
+            buttonEditLevel.TabIndex = 2;
+            buttonEditLevel.Text = "Edit Nama Level";
+            buttonEditLevel.UseVisualStyleBackColor = true;
+            buttonEditLevel.Click += ButtonEditLevel_Click;
+
             // 
-            // Hapuslv
+            // buttonHapusLevel
             // 
-            Hapuslv.Enabled = false;
-            Hapuslv.Location = new Point(594, 145);
-            Hapuslv.Name = "Hapuslv";
-            Hapuslv.Size = new Size(126, 23);
-            Hapuslv.TabIndex = 3;
-            Hapuslv.Text = "Hapus Level";
-            Hapuslv.UseVisualStyleBackColor = true;
-            Hapuslv.Click += Hapuslv_Click;
+            buttonHapusLevel.Enabled = false;
+            buttonHapusLevel.Location = new Point(594, 145);
+            buttonHapusLevel.Name = "buttonHapusLevel";
+            buttonHapusLevel.Size = new Size(126, 23);
+            buttonHapusLevel.TabIndex = 3;
+            buttonHapusLevel.Text = "Hapus Level";
+            buttonHapusLevel.UseVisualStyleBackColor = true;
+            buttonHapusLevel.Click += ButtonHapusLevel_Click;
+
             // 
-            // Kelolalv
+            // buttonKelolaSoal
             // 
-            Kelolalv.Location = new Point(594, 209);
-            Kelolalv.Name = "Kelolalv";
-            Kelolalv.Size = new Size(126, 23);
-            Kelolalv.TabIndex = 4;
-            Kelolalv.Text = "Kelola Soal";
-            Kelolalv.UseVisualStyleBackColor = true;
-            Kelolalv.Click += Kelolalv_Click;
+            buttonKelolaSoal.Location = new Point(594, 209);
+            buttonKelolaSoal.Name = "buttonKelolaSoal";
+            buttonKelolaSoal.Size = new Size(126, 23);
+            buttonKelolaSoal.TabIndex = 4;
+            buttonKelolaSoal.Text = "Kelola Soal";
+            buttonKelolaSoal.UseVisualStyleBackColor = true;
+            buttonKelolaSoal.Click += ButtonKelolaSoal_Click;
+
             // 
             // listBoxLevel
             // 
@@ -96,7 +102,8 @@
             listBoxLevel.Name = "listBoxLevel";
             listBoxLevel.Size = new Size(500, 289);
             listBoxLevel.TabIndex = 0;
-            listBoxLevel.SelectedIndexChanged += listBoxLevel_SelectedIndexChanged;
+            listBoxLevel.SelectedIndexChanged += ListBoxLevel_SelectedIndexChanged;
+
             // 
             // buttonBack
             // 
@@ -107,34 +114,35 @@
             buttonBack.TabIndex = 11;
             buttonBack.Text = "Kembali";
             buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += buttonBack_Click;
+            buttonBack.Click += ButtonBack_Click;
+
             // 
-            // Kelola_Level_dan_Soal
+            // KelolaLevelDanSoal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(738, 357);
             Controls.Add(buttonBack);
             Controls.Add(listBoxLevel);
-            Controls.Add(Kelolalv);
-            Controls.Add(Hapuslv);
-            Controls.Add(Editlv);
-            Controls.Add(Tambahlv);
-            Controls.Add(label1);
-            Name = "Kelola_Level_dan_Soal";
-            Text = "Kelola_Level_dan_Soal";
-            Load += Kelola_Level_dan_Soal_Load;
+            Controls.Add(buttonKelolaSoal);
+            Controls.Add(buttonHapusLevel);
+            Controls.Add(buttonEditLevel);
+            Controls.Add(buttonTambahLevel);
+            Controls.Add(labelKelolaLevel);
+            Name = "KelolaLevelDanSoal";
+            Text = "Kelola Level dan Soal";
+            Load += KelolaLevelDanSoal_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Button Tambahlv;
-        private Button Editlv;
-        private Button Hapuslv;
-        private Button Kelolalv;
+        private Label labelKelolaLevel;
+        private Button buttonTambahLevel;
+        private Button buttonEditLevel;
+        private Button buttonHapusLevel;
+        private Button buttonKelolaSoal;
         private ListBox listBoxLevel;
         private Button buttonBack;
     }

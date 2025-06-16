@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AuthAPI;
 using SoalLibrary;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -17,10 +18,10 @@ namespace TubesKPL
     {
 
         private Soal soalBaru;
-
+        
         public FormMenambahSoalEssay()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         public Soal AmbilSoal()
@@ -51,22 +52,12 @@ namespace TubesKPL
             this.Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Button_Kembali_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
 
         private void FormMenambahSoalEssay_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelJudul_Click(object sender, EventArgs e)
         {
 
         }
