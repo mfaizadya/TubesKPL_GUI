@@ -32,6 +32,7 @@ namespace TubesKPL
 
         }
 
+        // Event tombol tambah opsi diklik
         private void btnAddOption_Click(object sender, EventArgs e)
         {
             string opsi = txtOption.Text.Trim();
@@ -63,6 +64,7 @@ namespace TubesKPL
 
         }
 
+        // Event tombol simpan diklik
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             string soal = txtSoal.Text.Trim();
@@ -83,6 +85,7 @@ namespace TubesKPL
             Close();
         }
 
+        // Validasi input sebelum membuat object soal
         private bool IsValidInput(string soal, string jawaban, List<string> opsiList)
         {
             if (string.IsNullOrEmpty(soal))
@@ -112,11 +115,13 @@ namespace TubesKPL
             return true;
         }
 
+        // Menampilkan pesan peringatan
         private void ShowWarning(string message)
         {
             MessageBox.Show(message, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        // Menampilkan pesan error
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Error);
