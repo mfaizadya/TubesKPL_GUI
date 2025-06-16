@@ -132,7 +132,7 @@ namespace TubesKPL
             // Nonaktifkan tombol edit, hapus, dan kelola soal saat tidak ada yang dipilih
             buttonEditLevel.Enabled = false;
             buttonHapusLevel.Enabled = false;
-            buttonKelolaSoal.Enabled = false;
+            
         }
 
         // Aktifkan tombol saat item dipilih
