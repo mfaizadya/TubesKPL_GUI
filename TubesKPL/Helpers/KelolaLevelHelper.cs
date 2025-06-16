@@ -21,7 +21,7 @@ namespace TubesKPL
             };
             Label textLabel = new Label() { Left = 20, Top = 20, Text = text, Width = 340, Height = 100 };
             TextBox textBox = new TextBox() { Left = 20, Top = 60, Width = 340, Text = defaultValue };
-            Button confirmation = new Button() { Text = "OK", Left = 270, Width = 90, Top = 120, DialogResult = DialogResult.OK, Height = 50 };
+            Button confirmation = new Button() { Text = "OK", Left = 270, Width = 90, Top = 120, DialogResult = DialogResult.OK, Height = 20 };
             prompt.Controls.Add(textBox);
             prompt.Controls.Add(confirmation);
             prompt.Controls.Add(textLabel);

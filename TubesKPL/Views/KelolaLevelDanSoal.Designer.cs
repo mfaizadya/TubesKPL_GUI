@@ -40,20 +40,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(641, 41);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Location = new Point(345, 19);
             label1.Name = "label1";
-            label1.Size = new Size(141, 32);
+            label1.Size = new Size(69, 15);
             label1.TabIndex = 0;
             label1.Text = "Kelola Level";
             label1.Click += label1_Click;
             // 
             // Tambahlv
             // 
-            Tambahlv.Location = new Point(1103, 186);
-            Tambahlv.Margin = new Padding(5, 6, 5, 6);
+            Tambahlv.Location = new Point(594, 87);
             Tambahlv.Name = "Tambahlv";
-            Tambahlv.Size = new Size(234, 50);
+            Tambahlv.Size = new Size(126, 23);
             Tambahlv.TabIndex = 1;
             Tambahlv.Text = "Tambah Level";
             Tambahlv.UseVisualStyleBackColor = true;
@@ -62,10 +60,9 @@
             // Editlv
             // 
             Editlv.Enabled = false;
-            Editlv.Location = new Point(1103, 248);
-            Editlv.Margin = new Padding(5, 6, 5, 6);
+            Editlv.Location = new Point(594, 116);
             Editlv.Name = "Editlv";
-            Editlv.Size = new Size(234, 50);
+            Editlv.Size = new Size(126, 23);
             Editlv.TabIndex = 2;
             Editlv.Text = "Edit Nama Level";
             Editlv.UseVisualStyleBackColor = true;
@@ -74,10 +71,9 @@
             // Hapuslv
             // 
             Hapuslv.Enabled = false;
-            Hapuslv.Location = new Point(1103, 309);
-            Hapuslv.Margin = new Padding(5, 6, 5, 6);
+            Hapuslv.Location = new Point(594, 145);
             Hapuslv.Name = "Hapuslv";
-            Hapuslv.Size = new Size(234, 50);
+            Hapuslv.Size = new Size(126, 23);
             Hapuslv.TabIndex = 3;
             Hapuslv.Text = "Hapus Level";
             Hapuslv.UseVisualStyleBackColor = true;
@@ -85,10 +81,9 @@
             // 
             // Kelolalv
             // 
-            Kelolalv.Location = new Point(1103, 446);
-            Kelolalv.Margin = new Padding(5, 6, 5, 6);
+            Kelolalv.Location = new Point(594, 209);
             Kelolalv.Name = "Kelolalv";
-            Kelolalv.Size = new Size(234, 50);
+            Kelolalv.Size = new Size(126, 23);
             Kelolalv.TabIndex = 4;
             Kelolalv.Text = "Kelola Soal";
             Kelolalv.UseVisualStyleBackColor = true;
@@ -96,19 +91,19 @@
             // 
             // listBoxLevel
             // 
-            listBoxLevel.Location = new Point(93, 107);
-            listBoxLevel.Margin = new Padding(5, 6, 5, 6);
+            listBoxLevel.ItemHeight = 15;
+            listBoxLevel.Location = new Point(50, 50);
             listBoxLevel.Name = "listBoxLevel";
-            listBoxLevel.Size = new Size(925, 612);
+            listBoxLevel.Size = new Size(500, 289);
             listBoxLevel.TabIndex = 0;
             listBoxLevel.SelectedIndexChanged += listBoxLevel_SelectedIndexChanged;
             // 
             // buttonBack
             // 
-            buttonBack.Location = new Point(1204, 842);
-            buttonBack.Margin = new Padding(5);
+            buttonBack.Location = new Point(594, 317);
+            buttonBack.Margin = new Padding(3, 2, 3, 2);
             buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(133, 46);
+            buttonBack.Size = new Size(126, 22);
             buttonBack.TabIndex = 11;
             buttonBack.Text = "Kembali";
             buttonBack.UseVisualStyleBackColor = true;
@@ -116,9 +111,9 @@
             // 
             // Kelola_Level_dan_Soal
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1485, 960);
+            ClientSize = new Size(738, 357);
             Controls.Add(buttonBack);
             Controls.Add(listBoxLevel);
             Controls.Add(Kelolalv);
@@ -126,7 +121,6 @@
             Controls.Add(Editlv);
             Controls.Add(Tambahlv);
             Controls.Add(label1);
-            Margin = new Padding(5, 6, 5, 6);
             Name = "Kelola_Level_dan_Soal";
             Text = "Kelola_Level_dan_Soal";
             Load += Kelola_Level_dan_Soal_Load;
