@@ -37,31 +37,31 @@
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAttempt.Location = new Point(20, 34);
-            dataGridViewAttempt.Margin = new Padding(5, 5, 5, 5);
+            dataGridViewAttempt.Margin = new Padding(5);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(994, 646);
+            dataGridViewAttempt.Size = new Size(1226, 646);
             dataGridViewAttempt.TabIndex = 0;
             // 
             // ButtonBack
             // 
-            buttonBack.Location = new Point(1066, 557);
-            buttonBack.Margin = new Padding(5, 5, 5, 5);
-            buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(192, 62);
-            buttonBack.TabIndex = 1;
-            buttonBack.Text = "Kembali";
-            buttonBack.UseVisualStyleBackColor = true;
-            buttonBack.Click += buttonBack_Click;
+            ButtonBack.Location = new Point(1278, 607);
+            ButtonBack.Margin = new Padding(5);
+            ButtonBack.Name = "ButtonBack";
+            ButtonBack.Size = new Size(192, 62);
+            ButtonBack.TabIndex = 1;
+            ButtonBack.Text = "Kembali";
+            ButtonBack.UseVisualStyleBackColor = true;
+            ButtonBack.Click += ButtonBack_Click;
             // 
             // AttemptReview
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 720);
-            Controls.Add(buttonBack);
+            ClientSize = new Size(1494, 720);
+            Controls.Add(ButtonBack);
             Controls.Add(dataGridViewAttempt);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "AttemptReview";
             Text = "AttemptReview";
             Load += AttemptReview_Load;
