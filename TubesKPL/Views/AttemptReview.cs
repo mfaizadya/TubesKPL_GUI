@@ -1,148 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 using System.Windows.Forms;
 using AuthAPI;
-using System.Text;
-using System.Text.Json;
 using TubesKPL.Views;
 
 namespace TubesKPL
 {
     public partial class AttemptReview : Form
     {
-        List<Attempt> attempts;
-        string loginAs;
-        LoginResponse loginData;
+        private List<Attempt> attempts;
+        private string role;
+        private LoginResponse loginData;
 
         /// <summary>
-        /// Konstruktor untuk class AttemptReview.
+        /// Konstruktor utama AttemptReview. Menyimpan data login dan memuat attempt.
         /// </summary>
-        public AttemptReview(string loginAs, LoginResponse loginData)
+        public AttemptReview(string role, LoginResponse loginData)
         {
             InitializeComponent();
-            this.loginAs = loginAs;
+            this.role = role;
             this.loginData = loginData;
 
             try
             {
-                LoadAttempt(loginAs, loginData.username);
-                TampilkanAttempt();
-            } catch (Exception ex)
-            {
-                MessageBox.Show($"Terjadi kesalahan saat memuat data attempt: {ex.Message}",
-                   "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.LoadAttempts(this.role, this.loginData.username);
+                this.DisplayAttempts();
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Terjadi kesalahan saat memuat data attempt: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
-        private void AttemptReview_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void AttemptReview_Load(object sender, EventArgs e) { }
 
         /// <summary>
-        /// Method yang digunakan untuk membaca file JSON yang ada pada dataPath kemudian melakukan deserialisasi menjadi List Attempt pada variable attempts.
+        /// Memuat data attempt dari file JSON dan memfilter berdasarkan role.
         /// </summary>
-        private void LoadAttempt(string loginAs, string username)
+        private void LoadAttempts(string role, string username)
         {
-            List<Attempt> listAttempts = new List<Attempt>();
             string dataPath = "data_attempt.json";
+            var allAttempts = new List<Attempt>();
 
             try
             {
                 if (File.Exists(dataPath))
                 {
-                    string existingJson = File.ReadAllText(dataPath);
-                    listAttempts = JsonSerializer.Deserialize<List<Attempt>>(existingJson) ?? new List<Attempt>();
+                    string jsonContent = File.ReadAllText(dataPath);
+                    allAttempts = JsonSerializer.Deserialize<List<Attempt>>(jsonContent) ?? new List<Attempt>();
                 }
-                if (loginAs == "admin")
-                {
-                    attempts = listAttempts;
-                }
-                else
-                {
-                    attempts = listAttempts.Where(a => a.UserName == username).ToList();
-                }
-            } catch (JsonException je)
-            {
-                MessageBox.Show($"Format data JSON tidak valid: {je.Message}",
-                    "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } catch (IOException ie)
-            {
-                MessageBox.Show($"Kesalahan saat membaca file: {ie.Message}",
-                    "IO Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
-            
+                this.attempts = role == "admin"
+                    ? allAttempts
+                    : allAttempts.Where(a => a.UserName == username).ToList();
+            }
+            catch (JsonException je)
+            {
+                MessageBox.Show($"Format data JSON tidak valid: {je.Message}", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (IOException ie)
+            {
+                MessageBox.Show($"Kesalahan saat membaca file: {ie.Message}", "IO Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
-        /// Method untuk menampilkan List Attempt yang sudah di-load, jika tidak ada data Attempt maka tidak menampilkan data apapun pada data grid.
+        /// Menampilkan data attempt ke dalam DataGridView.
         /// </summary>
-        private void TampilkanAttempt()
+        private void DisplayAttempts()
         {
             dataGridViewAttempt.DataSource = null;
-            dataGridViewAttempt.DataSource = attempts;
+            dataGridViewAttempt.DataSource = this.attempts;
         }
 
         /// <summary>
-        /// Method yang dijalankan ketika button back ditekan, mengarahkan pengguna ke menu berdasarkan role nya.
+        /// Event handler untuk tombol "Back". Mengarahkan pengguna ke menu sesuai rolenya.
         /// </summary>
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            if (loginAs == "admin")
+            if (this.role == "admin")
             {
-                MenuAdmin formMenuAdmin = new MenuAdmin(loginData);
-                formMenuAdmin.Show();
-                this.Close();
-            } else
-            {
-                MenuPelajar formMenuPelajar = new MenuPelajar(loginData);
-                formMenuPelajar.Show();
-                this.Close();
-            }
-        }
-
-        private void ButtonDetail_Click(object sender, EventArgs e)
-        {
-            
-            if (dataGridViewAttempt.SelectedRows.Count > 0)
-            {
-                Attempt selectedAttempt = dataGridViewAttempt.SelectedRows[0].DataBoundItem as Attempt;
-
-                if (selectedAttempt != null)
-                {
-                    if (loginAs == "admin")
-                    {
-                        AttemptDetailForm formDetail = new AttemptDetailForm(selectedAttempt, loginData);
-                        formDetail.ShowDialog();
-
-                        // refresh setelah kembali (bila ada perubahan)
-                        LoadAttempt(loginAs, loginData.username);
-                        TampilkanAttempt();
-                    }
-                    else
-                    {
-                        AttemptDetailPelajar formDetail = new AttemptDetailPelajar(selectedAttempt, loginData);
-                        formDetail.ShowDialog();
-
-                        // refresh setelah kembali (bila ada perubahan)
-                        LoadAttempt(loginAs, loginData.username);
-                        TampilkanAttempt();
-                    }
-                    
-                }
+                var adminMenu = new MenuAdmin(this.loginData);
+                adminMenu.Show();
             }
             else
             {
-                MessageBox.Show("Pilih salah satu data attempt!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var studentMenu = new MenuPelajar(this.loginData);
+                studentMenu.Show();
             }
+
+            this.Close();
+        }
+
+        /// <summary>
+        /// Event handler untuk tombol "Detail". Menampilkan form detail dari attempt yang dipilih.
+        /// </summary>
+        private void ButtonDetail_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAttempt.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Pilih salah satu data attempt!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Attempt selectedAttempt = dataGridViewAttempt.SelectedRows[0].DataBoundItem as Attempt;
+            if (selectedAttempt == null) return;
+
+            Form detailForm = this.role == "admin"
+                ? new AttemptDetailForm(selectedAttempt, this.loginData)
+                : new AttemptDetailPelajar(selectedAttempt, this.loginData);
+
+            detailForm.ShowDialog();
+
+            // Refresh data setelah form ditutup
+            this.LoadAttempts(this.role, this.loginData.username);
+            this.DisplayAttempts();
         }
     }
 }
