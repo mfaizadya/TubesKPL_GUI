@@ -55,7 +55,7 @@
             btnSelesai.TabIndex = 1;
             btnSelesai.Text = "Selesai";
             btnSelesai.UseVisualStyleBackColor = true;
-            btnSelesai.Click += btnSelesai_Click;
+            btnSelesai.Click += BtnSelesai_Click;
             // 
             // textBoxPertanyaan
             // 
@@ -99,7 +99,7 @@
             Button_Kembali.TabIndex = 6;
             Button_Kembali.Text = "Kembali";
             Button_Kembali.UseVisualStyleBackColor = true;
-            Button_Kembali.Click += Button_Kembali_Click;
+            Button_Kembali.Click += BtnKembali_Click;
             // 
             // FormMenambahSoalEssay
             // 
