@@ -34,19 +34,19 @@ namespace TubesKPL
 
                 if (loginData != null && !string.IsNullOrEmpty(loginData.nama))
                 {
-                    labelOutput.Text = $"Login berhasil, selamat datang {loginData.nama}!";
+                    MessageBox.Show($"Login berhasil, selamat datang {loginData.nama}!");
                     MenuAdmin formMenuAdmin = new MenuAdmin(loginData);
                     formMenuAdmin.Show();
                     this.Close();
                 }
                 else
                 {
-                    labelOutput.Text = $"Login gagal, data kosong.";
+                    MessageBox.Show($"Login gagal, data kosong.");
                 }
             }
             catch (JsonException)
             {
-                labelOutput.Text = $"Login gagal, {loginResp}";
+                MessageBox.Show($"Login gagal, {loginResp}");
             }
 
         }
