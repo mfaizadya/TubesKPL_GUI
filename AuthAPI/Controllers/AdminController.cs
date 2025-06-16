@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BCrypt.Net;
 
 namespace AuthAPI.Controllers
 {
@@ -9,8 +10,9 @@ namespace AuthAPI.Controllers
     {
         private static List<Admin> daftarAdmin = new List<Admin>
         {
-            new Admin("Admin1", "admin", "password"),
-            new Admin{Nama="Admin2", Username="admin2", Password="password"}
+            new Admin("Admin1", "admin", BCrypt.Net.BCrypt.HashPassword("password")),
+            new Admin { Nama = "Admin2", Username = "admin2", Password = BCrypt.Net.BCrypt.HashPassword("password") }
+
         };
 
         [HttpGet]
@@ -33,6 +35,7 @@ namespace AuthAPI.Controllers
                 return Conflict("Username sudah digunakan.");
             }
 
+            newAdmin.Password = BCrypt.Net.BCrypt.HashPassword(newAdmin.Password);
             daftarAdmin.Add(newAdmin);
             return CreatedAtAction(nameof(GetAllAdmin), new { username = newAdmin.Username }, newAdmin);
         }
@@ -42,18 +45,20 @@ namespace AuthAPI.Controllers
         public ActionResult<Admin> Login([FromBody] LoginReq req)
         {
             int i;
+
             if (req == null || string.IsNullOrWhiteSpace(req.Username) || string.IsNullOrWhiteSpace(req.Password))
             {
                 return BadRequest("Username dan password harus diisi.");
             }
-            for (i = 0; i < daftarAdmin.Count; i++)
+
+            var admin = daftarAdmin.FirstOrDefault(a => a.Username == req.Username);
+
+            if (admin == null || !BCrypt.Net.BCrypt.Verify(req.Password, admin.Password))
             {
-                if (daftarAdmin[i].Username == req.Username && daftarAdmin[i].Password == req.Password)
-                {
-                    return Ok(daftarAdmin[i]);
-                }
+                return Unauthorized("Username atau password salah");
             }
-            return Unauthorized("Username atau password salah");
+
+            return Ok(admin);
         }
     }
 }
