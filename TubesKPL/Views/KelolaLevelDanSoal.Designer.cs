@@ -40,19 +40,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(395, 12);
+            label1.Location = new Point(641, 41);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(89, 20);
+            label1.Size = new Size(141, 32);
             label1.TabIndex = 0;
             label1.Text = "Kelola Level";
             label1.Click += label1_Click;
             // 
             // Tambahlv
             // 
-            Tambahlv.Location = new Point(679, 116);
-            Tambahlv.Margin = new Padding(3, 4, 3, 4);
+            Tambahlv.Location = new Point(1103, 186);
+            Tambahlv.Margin = new Padding(5, 6, 5, 6);
             Tambahlv.Name = "Tambahlv";
-            Tambahlv.Size = new Size(144, 31);
+            Tambahlv.Size = new Size(234, 50);
             Tambahlv.TabIndex = 1;
             Tambahlv.Text = "Tambah Level";
             Tambahlv.UseVisualStyleBackColor = true;
@@ -61,10 +62,10 @@
             // Editlv
             // 
             Editlv.Enabled = false;
-            Editlv.Location = new Point(679, 155);
-            Editlv.Margin = new Padding(3, 4, 3, 4);
+            Editlv.Location = new Point(1103, 248);
+            Editlv.Margin = new Padding(5, 6, 5, 6);
             Editlv.Name = "Editlv";
-            Editlv.Size = new Size(144, 31);
+            Editlv.Size = new Size(234, 50);
             Editlv.TabIndex = 2;
             Editlv.Text = "Edit Nama Level";
             Editlv.UseVisualStyleBackColor = true;
@@ -73,10 +74,10 @@
             // Hapuslv
             // 
             Hapuslv.Enabled = false;
-            Hapuslv.Location = new Point(679, 193);
-            Hapuslv.Margin = new Padding(3, 4, 3, 4);
+            Hapuslv.Location = new Point(1103, 309);
+            Hapuslv.Margin = new Padding(5, 6, 5, 6);
             Hapuslv.Name = "Hapuslv";
-            Hapuslv.Size = new Size(144, 31);
+            Hapuslv.Size = new Size(234, 50);
             Hapuslv.TabIndex = 3;
             Hapuslv.Text = "Hapus Level";
             Hapuslv.UseVisualStyleBackColor = true;
@@ -84,10 +85,10 @@
             // 
             // Kelolalv
             // 
-            Kelolalv.Location = new Point(679, 279);
-            Kelolalv.Margin = new Padding(3, 4, 3, 4);
+            Kelolalv.Location = new Point(1103, 446);
+            Kelolalv.Margin = new Padding(5, 6, 5, 6);
             Kelolalv.Name = "Kelolalv";
-            Kelolalv.Size = new Size(144, 31);
+            Kelolalv.Size = new Size(234, 50);
             Kelolalv.TabIndex = 4;
             Kelolalv.Text = "Kelola Soal";
             Kelolalv.UseVisualStyleBackColor = true;
@@ -95,28 +96,29 @@
             // 
             // listBoxLevel
             // 
-            listBoxLevel.Location = new Point(57, 67);
-            listBoxLevel.Margin = new Padding(3, 4, 3, 4);
+            listBoxLevel.Location = new Point(93, 107);
+            listBoxLevel.Margin = new Padding(5, 6, 5, 6);
             listBoxLevel.Name = "listBoxLevel";
-            listBoxLevel.Size = new Size(571, 384);
+            listBoxLevel.Size = new Size(925, 612);
             listBoxLevel.TabIndex = 0;
             listBoxLevel.SelectedIndexChanged += listBoxLevel_SelectedIndexChanged;
             // 
             // buttonBack
             // 
-            buttonBack.Location = new Point(741, 526);
+            buttonBack.Location = new Point(1204, 842);
+            buttonBack.Margin = new Padding(5);
             buttonBack.Name = "buttonBack";
-            buttonBack.Size = new Size(82, 29);
+            buttonBack.Size = new Size(133, 46);
             buttonBack.TabIndex = 11;
-            buttonBack.Text = "Back";
+            buttonBack.Text = "Kembali";
             buttonBack.UseVisualStyleBackColor = true;
             buttonBack.Click += buttonBack_Click;
             // 
             // Kelola_Level_dan_Soal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(1485, 960);
             Controls.Add(buttonBack);
             Controls.Add(listBoxLevel);
             Controls.Add(Kelolalv);
@@ -124,7 +126,7 @@
             Controls.Add(Editlv);
             Controls.Add(Tambahlv);
             Controls.Add(label1);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(5, 6, 5, 6);
             Name = "Kelola_Level_dan_Soal";
             Text = "Kelola_Level_dan_Soal";
             Load += Kelola_Level_dan_Soal_Load;

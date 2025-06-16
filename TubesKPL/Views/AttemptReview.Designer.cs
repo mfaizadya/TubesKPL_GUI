@@ -36,32 +36,32 @@
             // dataGridViewAttempt
             // 
             dataGridViewAttempt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAttempt.Location = new Point(10, 16);
-            dataGridViewAttempt.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewAttempt.Location = new Point(20, 34);
+            dataGridViewAttempt.Margin = new Padding(5, 5, 5, 5);
             dataGridViewAttempt.Name = "dataGridViewAttempt";
             dataGridViewAttempt.RowHeadersWidth = 51;
-            dataGridViewAttempt.Size = new Size(716, 303);
+            dataGridViewAttempt.Size = new Size(994, 646);
             dataGridViewAttempt.TabIndex = 0;
             // 
             // ButtonBack
             // 
-            ButtonBack.Location = new Point(732, 267);
-            ButtonBack.Margin = new Padding(3, 2, 3, 2);
-            ButtonBack.Name = "ButtonBack";
-            ButtonBack.Size = new Size(103, 29);
-            ButtonBack.TabIndex = 1;
-            ButtonBack.Text = "Back";
-            ButtonBack.UseVisualStyleBackColor = true;
-            ButtonBack.Click += ButtonBack_Click;
+            buttonBack.Location = new Point(1066, 557);
+            buttonBack.Margin = new Padding(5, 5, 5, 5);
+            buttonBack.Name = "buttonBack";
+            buttonBack.Size = new Size(192, 62);
+            buttonBack.TabIndex = 1;
+            buttonBack.Text = "Kembali";
+            buttonBack.UseVisualStyleBackColor = true;
+            buttonBack.Click += buttonBack_Click;
             // 
             // AttemptReview
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(861, 338);
-            Controls.Add(ButtonBack);
+            ClientSize = new Size(1300, 720);
+            Controls.Add(buttonBack);
             Controls.Add(dataGridViewAttempt);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "AttemptReview";
             Text = "AttemptReview";
             Load += AttemptReview_Load;
